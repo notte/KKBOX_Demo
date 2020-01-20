@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "core-js": "^3.4.4",
+    "element-ui": "^2.13.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.1.0",
     "vue": "^2.6.10",
