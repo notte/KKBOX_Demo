@@ -21,7 +21,9 @@
 				</el-menu>
 			</el-aside>
 			<el-container>
-				<el-main></el-main>
+				<el-main>
+					<PopularList />
+				</el-main>
 			</el-container>
 		</el-container>
 	</div>
@@ -30,8 +32,13 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
+import PopularList from '@/view/PopularList.vue';
 
-@Component
+@Component({
+	components: {
+		PopularList,
+	},
+})
 export default class App extends Vue {}
 </script>
 <style lang="scss">
@@ -39,6 +46,7 @@ body {
 	height: 100vh;
 	width: 100vw;
 	margin: 0;
+	font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
 }
 
 .el-aside {
