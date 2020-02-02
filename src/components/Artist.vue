@@ -4,9 +4,10 @@
 		<img
 			src="https://i.kfs.io/artist/global/10012811,0v1/fit/300x300.jpg"
 			alt
-			style="width: 300px;height: 300px;margin: 30px 30px 15px 30px;"
+			style="width: 300px;height: 300px;"
 		/>
-		<h1>陳忻玥 (Vicky Chen)</h1>
+		<h1 class="artist-name">陳忻玥 (Vicky Chen)</h1>
+		<el-divider>全部歌曲</el-divider>
 		<el-row>
 			<el-col :span="5">
 				<el-card shadow="hover" :body-style="{ padding: '0px' }">
@@ -15,7 +16,7 @@
 					/>
 					<div class="el-card-text" style="padding: 14px;">
 						<h1>好吃的汉堡</h1>
-						<span>【封面人物：婁峻碩】懂玩懂創作的婁峻碩 Shou，在 2020 過年之際，發行最新的拜年單曲〈恭嘻發彩〉！利用嘻哈元素替過年增添色彩，讓拜年不再一成不變。</span>
+						<span>2018-03-10</span>
 					</div>
 				</el-card>
 			</el-col>
@@ -55,11 +56,11 @@ export default class Artist extends Vue {
 		],
 	};
 	created() {
-		console.log(this.data.tableData);
+		// console.log(this.data.tableData);
 	}
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 span {
 	color: #595959;
 	font-size: 14px;
@@ -71,9 +72,8 @@ p {
 	font-weight: 900;
 }
 
-.el-divider--horizontal {
-	width: 50% !important;
-	margin: 0 auto !important;
-	text-align: center;
+.artist-name{
+	margin-bottom: 50px;
 }
+
 </style>

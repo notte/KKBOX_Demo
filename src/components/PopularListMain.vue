@@ -24,26 +24,5 @@ import { Component } from 'vue-property-decorator';
 @Component
 export default class PopularListMain extends Vue {}
 </script>
-<style lang="scss">
-.el-card {
-	margin: 15px;
-	img {
-		width: 100%;
-		height: auto;
-	}
-	.el-card-text {
-		h1 {
-			padding: 0;
-			margin: 0;
-			margin-bottom: 8px;
-			font-size: 14px;
-			color: #333;
-		}
-
-		span {
-			font-size: 12px;
-			color: #595959;
-		}
-	}
-}
+<style lang="scss" scoped>
 </style>

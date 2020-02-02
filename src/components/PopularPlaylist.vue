@@ -49,8 +49,5 @@ export default class PopularPlaylist extends Vue {
 	}
 }
 </script>
-<style lang="scss">
-.el-table {
-	margin: 0 auto;
-}
+<style lang="scss" scoped>
 </style>

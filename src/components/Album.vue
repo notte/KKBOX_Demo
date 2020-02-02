@@ -25,17 +25,11 @@ export default class Album extends Vue {
 		],
 	};
 	created() {
-		console.log(this.data.tableData);
+		// console.log(this.data.tableData);
 	}
 }
 </script>
-<style lang="scss">
-img {
-	// margin: 0 auto;
-	margin: 30px 30px 15px 30px;
-	// text-align: center;
-}
-
+<style lang="scss" scoped>
 span {
 	color: #595959;
 	font-size: 14px;
@@ -47,9 +41,4 @@ p {
 	font-weight: 900;
 }
 
-.el-divider--horizontal {
-	width: 50% !important;
-	margin: 0 auto !important;
-	text-align: center;
-}
 </style>
