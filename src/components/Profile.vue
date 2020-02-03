@@ -1,26 +1,22 @@
 <template>
 	<div style="text-align:center">
-		<el-page-header title content="歌手"></el-page-header>
+		<el-page-header title content="User Name"></el-page-header>
 		<img
 			src="https://i.kfs.io/artist/global/10012811,0v1/fit/300x300.jpg"
 			alt
 			style="width: 300px;height: 300px;"
 		/>
-		<h1 class="artist-name">陳忻玥 (Vicky Chen)</h1>
-		<el-divider>全部歌曲</el-divider>
-		<el-row>
-			<el-col :span="5">
-				<el-card shadow="hover" :body-style="{ padding: '0px' }">
-					<img
-						src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-					/>
-					<div class="el-card-text" style="padding: 14px;">
-						<h1>好吃的汉堡</h1>
-						<span>2018-03-10</span>
-					</div>
-				</el-card>
-			</el-col>
-		</el-row>
+		<h1 class="artist-name">id：</h1>
+		<el-divider>每日推薦</el-divider>
+		<el-table :data="data.tableData" style="width: 70%">
+			<el-table-column width="200">
+				<template slot-scope="scope">
+					<img :src="scope.row.url" alt style="width: 160px;height: 160px" />
+				</template>
+			</el-table-column>
+			<el-table-column prop="date" width="250"></el-table-column>
+			<el-table-column prop="name"></el-table-column>
+		</el-table>
 	</div>
 </template>
 
@@ -28,8 +24,10 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
-@Component
-export default class Artist extends Vue {
+@Component({
+	components: {},
+})
+export default class Profile extends Vue {
 	tableData: string[] = [];
 	data = {
 		tableData: [
@@ -55,24 +53,7 @@ export default class Artist extends Vue {
 			},
 		],
 	};
-	created() {
-		// console.log(this.data.tableData);
-	}
 }
 </script>
 <style lang="scss" scoped>
-span {
-	color: #595959;
-	font-size: 14px;
-}
-
-p {
-	color: #333;
-	font-size: 14px;
-	font-weight: 900;
-}
-
-.artist-name {
-	margin-bottom: 50px;
-}
 </style>

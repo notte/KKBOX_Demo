@@ -7,7 +7,22 @@ const routes = [
 	{
 		path: '/',
 		name: 'home',
-		component: () => import(/* webpackChunkName: "about" */ '../App.vue'),
+		component: () => import(/* webpackChunkName: "about" */ '@/App.vue'),
+	},
+	{
+		path: '/PopularList',
+		name: 'PopularList',
+		component: () => import('@/view/PopularList.vue'),
+	},
+	{
+		path: '/MainList',
+		name: 'MainList',
+		component: () => import('@/view/MainList.vue'),
+	},
+	{
+		path: '/Profile',
+		name: 'Profile',
+		component: () => import('@/view/Me.vue'),
 	},
 ];
 
