@@ -18,7 +18,7 @@ import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
 @Component
-export default class PopularPlaylist extends Vue {
+export default class Playlist extends Vue {
 	tableData: string[] = [];
 	data = {
 		tableData: [

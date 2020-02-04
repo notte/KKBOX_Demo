@@ -6,18 +6,28 @@ Vue.use(VueRouter);
 const routes = [
 	{
 		path: '/',
-		name: 'home',
-		component: () => import(/* webpackChunkName: "about" */ '@/App.vue'),
+		redirect: { name: 'PopularList' },
 	},
 	{
 		path: '/PopularList',
 		name: 'PopularList',
 		component: () => import('@/view/PopularList.vue'),
+		children: [
+			{ path: 'Playlist', name: 'Playlist', component: () => import('@/components/Playlist.vue') },
+			{ path: 'Album', name: 'Album', component: () => import('@/components/Album.vue') },
+			{ path: 'Artist', name: 'Artist', component: () => import('@/components/Artist.vue') },
+		],
 	},
 	{
 		path: '/MainList',
 		name: 'MainList',
 		component: () => import('@/view/MainList.vue'),
+		children: [
+			{ path: 'MainType', name: 'MainType', component: () => import('@/components/Playlist.vue') },
+			{ path: 'Playlist', name: 'MainPlaylist', component: () => import('@/components/Playlist.vue') },
+			{ path: 'Album', name: 'MainAlbum', component: () => import('@/components/Album.vue') },
+			{ path: 'Artist', name: 'MainArtist', component: () => import('@/components/Artist.vue') },
+		],
 	},
 	{
 		path: '/Profile',
@@ -28,8 +38,12 @@ const routes = [
 
 const router = new VueRouter({
 	mode: 'history',
-	base: process.env.BASE_URL,
+	// base: process.env.BASE_URL,
 	routes,
+});
+
+router.beforeEach((to, from, next) => {
+	next();
 });
 
 export default router;
