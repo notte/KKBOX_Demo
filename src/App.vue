@@ -5,17 +5,23 @@
 				<el-menu default-active="1">
 					<router-link to="/PopularList">
 						<el-menu-item index="1">
-							<template slot="title"> <i class="el-icon-message"></i>熱門歌單 </template>
+							<template slot="title">
+								<i class="el-icon-message"></i>熱門歌單
+							</template>
 						</el-menu-item>
 					</router-link>
 					<router-link to="/MainList">
 						<el-menu-item index="2">
-							<template slot="title"> <i class="el-icon-message"></i>主題歌單 </template>
+							<template slot="title">
+								<i class="el-icon-message"></i>主題歌單
+							</template>
 						</el-menu-item>
 					</router-link>
 					<router-link to="/Profile">
 						<el-menu-item index="3">
-							<template slot="title"> <i class="el-icon-message"></i>個人歌單 </template>
+							<template slot="title">
+								<i class="el-icon-message"></i>個人歌單
+							</template>
 						</el-menu-item>
 					</router-link>
 				</el-menu>
@@ -36,7 +42,9 @@ import PopularList from '@/view/PopularList.vue';
 import MainList from '@/view/MainList.vue';
 import Me from '@/view/Me.vue';
 import Request from '@/utilities/api-handle';
-// import axios from 'axios';
+import Api from '@/api/api';
+import * as Model from '@/models/interfaces/common';
+const qs = require('qs');
 
 @Component({
 	components: {
@@ -46,8 +54,14 @@ import Request from '@/utilities/api-handle';
 	},
 })
 export default class App extends Vue {
+	getTokenrequest = {} as Model.IgetTokenRequest;
 	created() {
-		// console.log(Request.request());
+		this.getTokenrequest.grant_type = 'client_credentials';
+		this.getTokenrequest.client_id = '56becb08dfb467fb1d42b8d499b03012';
+		this.getTokenrequest.client_secret = '05cd3ab201d7ca9ccad105e099a668e7';
+		Api.getToken(qs.stringify(this.getTokenrequest)).then(res => {
+			// console.log(res.access_token);
+		});
 	}
 }
 </script>
