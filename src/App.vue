@@ -5,17 +5,23 @@
 				<el-menu default-active="1">
 					<router-link to="/PopularList">
 						<el-menu-item index="1">
-							<template slot="title"> <i class="el-icon-message"></i>熱門歌單 </template>
+							<template slot="title">
+								<i class="el-icon-message"></i>熱門歌單
+							</template>
 						</el-menu-item>
 					</router-link>
 					<router-link to="/MainList">
 						<el-menu-item index="2">
-							<template slot="title"> <i class="el-icon-message"></i>主題歌單 </template>
+							<template slot="title">
+								<i class="el-icon-message"></i>主題歌單
+							</template>
 						</el-menu-item>
 					</router-link>
 					<router-link to="/Profile">
 						<el-menu-item index="3">
-							<template slot="title"> <i class="el-icon-message"></i>個人歌單 </template>
+							<template slot="title">
+								<i class="el-icon-message"></i>個人歌單
+							</template>
 						</el-menu-item>
 					</router-link>
 				</el-menu>
@@ -52,6 +58,7 @@ const qs = require('qs');
 export default class App extends Vue {
 	@tokenModule.State('publicToken') Token!: string;
 	getTokenrequest = {} as Model.IgetTokenRequest;
+	getSearch = {} as Model.ISearchRequest;
 	@Action('Token/setPublicToken') private setPublicToken!: any;
 	created() {
 		this.getTokenrequest.grant_type = 'client_credentials';
@@ -59,10 +66,18 @@ export default class App extends Vue {
 		this.getTokenrequest.client_secret = '05cd3ab201d7ca9ccad105e099a668e7';
 		Api.getToken(qs.stringify(this.getTokenrequest)).then(res => {
 			this.setPublicToken(res.access_token);
-			// console.log(this.Token);
+			localStorage.setItem('accessToken', res.access_token);
+		});
+		this.getSearch.q = '周杰倫';
+		this.getSearch.territory = 'TW';
+		this.getSearch.limit = 50;
+		this.getSearch.type = 'track';
+	}
+	mounted() {
+		Api.Search(qs.stringify(this.getSearch)).then(res => {
+			// console.log(res);
 		});
 	}
-	mounted() {}
 }
 </script>
 <style lang="scss" scoped></style>

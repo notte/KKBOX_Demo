@@ -8,8 +8,16 @@ export default {
 			url: `/token`,
 			data: payload,
 		};
-		// console.log(config);
 		const result = await Handler.request(config);
 		return <Model.IgetTokenReponse>result.data;
+	},
+	async Search(payload: Model.ISearchRequest): Promise<Model.ISearchReponse> {
+		const config = {
+			method: 'get',
+			url: `/api/search`,
+			data: payload,
+		};
+		const result = await Handler.request(config);
+		return <Model.ISearchReponse>result.data;
 	},
 };

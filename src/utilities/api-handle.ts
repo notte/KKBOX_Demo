@@ -11,10 +11,18 @@ import { Message } from 'element-ui';
 class HttpAxios {
 	constructor() {}
 	async request<T>(cfg: AxiosRequestConfig) {
-		cfg.headers = {
-			Accept: 'application/x-www-form-urlencoded',
-			'Content-Type': 'application/x-www-form-urlencoded',
-		};
+		if(localStorage.getItem('accessToken')){
+			cfg.headers={
+				Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+				Accept: 'application/x-www-form-urlencoded',
+				'Content-Type': 'application/x-www-form-urlencoded',
+			};
+		}else{
+			cfg.headers = {
+				Accept: 'application/x-www-form-urlencoded',
+				'Content-Type': 'application/x-www-form-urlencoded',
+			};
+		}
 		const instance = axios.create();
 		let result;
 		try {
