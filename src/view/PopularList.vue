@@ -1,9 +1,5 @@
 <template>
 	<div>
-		<!-- <h1 @click="currentTab='PopularList'">234</h1>
-		<h1 @click="currentTab='Playlist'">53</h1>
-		<h1 @click="currentTab='Album'">235</h1>
-		<h1 @click="currentTab='Artist'">123</h1>-->
 		<PopularListMain v-if="isShow('PopularList')" />
 		<Playlist v-if="isShow('Playlist')" />
 		<Album v-if="isShow('Album')" />
@@ -35,10 +31,9 @@ export default class PopularList extends Vue {
 	Album: PopularType = PopularType.Album;
 	Artist: PopularType = PopularType.Artist;
 
-	created() {
-		// console.log(this.currentTab);
-	}
+	created() {}
 
+	// 判斷當前要顯示哪個組件
 	isShow(tab: PopularType): boolean {
 		this.$router.push({ name: this.currentTab }).catch(err => {});
 		return this.currentTab === tab ? true : false;

@@ -15,6 +15,7 @@ module.exports = {
 			'/api': {
 				target: 'https://api.kkbox.com/v1.1/',
 				ws: true,
+				host: 'api.kkbox.com',
 				changeOrigin: true,
 				pathRewrite: {
 					'^/api': '',

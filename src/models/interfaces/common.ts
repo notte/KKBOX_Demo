@@ -1,3 +1,5 @@
+// get Token API
+
 export interface IgetTokenRequest {
 	grant_type: string;
 	client_id: string;
@@ -10,16 +12,14 @@ export interface IgetTokenReponse {
 	token_type: string;
 }
 
-
-// 搜尋
+// Search API
 
 export interface ISearchRequest {
 	q: string;
 	territory: string;
-	limit: number;
 	type: string;
+	limit?: number;
 }
-
 
 export interface ISearchReponse {
 	tracks: ITrack;
@@ -40,7 +40,7 @@ export interface ISummary {
 export interface IPaging {
 	offset: number;
 	limit: number;
-	previous: void /* 未知类型 */;
+	previous: void;
 	next: string;
 }
 
@@ -50,24 +50,22 @@ export interface IData {
 	duration: number;
 	isrc: string;
 	url: string;
-	'track_number': number;
+	track_number: number;
 	explicitness: boolean;
-	'available_territories': string[];
+	available_territories: string[];
 	album: IAlbum;
 }
-
 
 export interface IAlbum {
 	id: string;
 	name: string;
 	url: string;
 	explicitness: boolean;
-	'available_territories': string[];
-	'release_date': string;
+	available_territories: string[];
+	release_date: string;
 	images: IImag[];
 	artist: IArtist;
 }
-
 
 export interface IArtist {
 	id: string;
@@ -75,7 +73,6 @@ export interface IArtist {
 	url: string;
 	images: IImag[];
 }
-
 
 interface IImag {
 	height: number;

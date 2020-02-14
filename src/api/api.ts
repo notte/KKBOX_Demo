@@ -14,7 +14,7 @@ export default {
 	async Search(payload: Model.ISearchRequest): Promise<Model.ISearchReponse> {
 		const config = {
 			method: 'get',
-			url: `/api/search`,
+			url: `/api/search?q=${payload.q}&territory=${payload.territory}&limit=${payload.limit}&type=${payload.type}`,
 			data: payload,
 		};
 		const result = await Handler.request(config);

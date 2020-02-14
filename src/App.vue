@@ -68,15 +68,15 @@ export default class App extends Vue {
 			this.setPublicToken(res.access_token);
 			localStorage.setItem('accessToken', res.access_token);
 		});
-		this.getSearch.q = '周杰倫';
-		this.getSearch.territory = 'TW';
-		this.getSearch.limit = 50;
-		this.getSearch.type = 'track';
+		// this.getSearch.q = '周杰倫';
+		// this.getSearch.territory = 'TW';
+		// this.getSearch.type = 'track';
+		// this.getSearch.limit = 50;
 	}
 	mounted() {
-		Api.Search(qs.stringify(this.getSearch)).then(res => {
-			// console.log(res);
-		});
+		// Api.Search(this.getSearch).then(res => {
+		// 	console.log(res);
+		// });
 	}
 }
 </script>

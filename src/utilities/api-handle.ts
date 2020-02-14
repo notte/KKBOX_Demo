@@ -1,23 +1,23 @@
 import Vue from 'vue';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
+import { requestSuccess, requestFail, responseSuccess, responseFail } from './error-handler';
 import { Message } from 'element-ui';
 
-/**
+/*
  * axios API handler
- * 透過此呼叫api
- * @author Yoyo
  */
 
 class HttpAxios {
 	constructor() {}
 	async request<T>(cfg: AxiosRequestConfig) {
-		if(localStorage.getItem('accessToken')){
-			cfg.headers={
+		// 如果在Storage中取得Token，夾帶在header中
+		if (localStorage.getItem('accessToken')) {
+			cfg.headers = {
 				Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
 				Accept: 'application/x-www-form-urlencoded',
 				'Content-Type': 'application/x-www-form-urlencoded',
 			};
-		}else{
+		} else {
 			cfg.headers = {
 				Accept: 'application/x-www-form-urlencoded',
 				'Content-Type': 'application/x-www-form-urlencoded',
