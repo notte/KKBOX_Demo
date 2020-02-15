@@ -28,3 +28,13 @@ export enum MainType {
 export enum MeType {
 	Profile = 'Profile',
 }
+
+// 系統訊息回應類型
+export enum SysMessageType {
+	Information = 'Information',
+	Warning = 'Warning',
+	Error = 'Error',
+	Success = 'Success',
+	Confirmation = 'Confirmation',
+	ConfirmationWithCancel = 'ConfirmationWithCancel',
+}

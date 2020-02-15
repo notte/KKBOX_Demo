@@ -74,7 +74,7 @@ export interface IArtist {
 	images: IImag[];
 }
 
-interface IImag {
+export interface IImag {
 	height: number;
 	width: number;
 	url: string;

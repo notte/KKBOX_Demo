@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 import { requestSuccess, requestFail, responseSuccess, responseFail } from './error-handler';
-import { Message } from 'element-ui';
 
 /*
  * axios API handler
@@ -23,8 +22,25 @@ class HttpAxios {
 				'Content-Type': 'application/x-www-form-urlencoded',
 			};
 		}
+
+		// 建立axios實體
 		const instance = axios.create();
+
+		// 請求攔截
+		instance.interceptors.request.use(
+			config => requestSuccess(config),
+			// 將err帶入
+			err => requestFail(err)
+		);
+
+		// 回應攔截
+		instance.interceptors.response.use(
+			response => responseSuccess(response),
+			errorData => responseFail(errorData)
+		);
+
 		let result;
+		// 這裡要補足知識
 		try {
 			result = await instance.request<T>(cfg);
 			return Promise.resolve(result);

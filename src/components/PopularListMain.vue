@@ -2,7 +2,7 @@
 	<div>
 		<el-page-header title content="熱門歌單"></el-page-header>
 		<el-row>
-			<el-col :span="8">
+			<el-col :span="5">
 				<el-card shadow="hover" :body-style="{ padding: '0px' }">
 					<img
 						src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"

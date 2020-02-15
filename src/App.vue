@@ -45,6 +45,7 @@ import Me from '@/view/Me.vue';
 import Request from '@/utilities/api-handle';
 import Api from '@/api/api';
 import * as Model from '@/models/interfaces/common';
+import EventBus, { SystemAlert } from '@/utilities/event-bus';
 const tokenModule = namespace('Token');
 const qs = require('qs');
 
@@ -64,19 +65,19 @@ export default class App extends Vue {
 		this.getTokenrequest.grant_type = 'client_credentials';
 		this.getTokenrequest.client_id = '56becb08dfb467fb1d42b8d499b03012';
 		this.getTokenrequest.client_secret = '05cd3ab201d7ca9ccad105e099a668e7';
-		Api.getToken(qs.stringify(this.getTokenrequest)).then(res => {
-			this.setPublicToken(res.access_token);
-			localStorage.setItem('accessToken', res.access_token);
-		});
-		// this.getSearch.q = '周杰倫';
-		// this.getSearch.territory = 'TW';
-		// this.getSearch.type = 'track';
-		// this.getSearch.limit = 50;
+		// Api.getToken(qs.stringify(this.getTokenrequest)).then(res => {
+		// 	this.setPublicToken(res.access_token);
+		// 	localStorage.setItem('accessToken', res.access_token);
+		// });
+		this.getSearch.q = '周杰倫';
+		this.getSearch.territory = 'TW';
+		this.getSearch.type = 'track';
+		this.getSearch.limit = 50;
 	}
 	mounted() {
-		// Api.Search(this.getSearch).then(res => {
-		// 	console.log(res);
-		// });
+		Api.Search(this.getSearch).then(res => {
+			// console.log(res);
+		});
 	}
 }
 </script>
