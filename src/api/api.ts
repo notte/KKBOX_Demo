@@ -20,4 +20,12 @@ export default {
 		const result = await Handler.request(config);
 		return <Model.ISearchReponse>result.data;
 	},
+	// async getNewHitsPlaylists(): Promise<Model.getNewHitsPlaylistsReponse> {
+	// 	const config = {
+	// 		method: 'get',
+	// 		url: `/new-hits-playlists`,
+	// 	};
+	// 	const result = await Handler.request(config);
+	// 	return <Model.ISearchReponse>result.data;
+	// },
 };

@@ -1,12 +1,11 @@
 import Vue from 'vue';
 import { SysMessageType } from '@/models/status/type';
 
-// 系統訊息
-export const SystemAlert = (type: SysMessageType, message: string, callback: any = () => {}) => {
+// 系統訊息，參數為型別（帶入enum）、訊息（帶入response）
+export const SystemAlert = (type: SysMessageType, message: string) => {
 	EventBus.$emit('system-alert', {
 		type,
 		message,
-		callback,
 	});
 };
 

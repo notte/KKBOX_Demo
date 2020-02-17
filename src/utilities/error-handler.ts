@@ -18,11 +18,6 @@ const requestFail = (error: any) => {
 
 // 回應成功，通過response
 const responseSuccess = (response: any) => {
-	//
-	// 試試看呼叫成功訊息
-	EventBus.$emit('api-error', response);
-	// console.log(response);
-
 	return Promise.resolve(response);
 };
 

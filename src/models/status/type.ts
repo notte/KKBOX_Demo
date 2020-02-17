@@ -38,3 +38,9 @@ export enum SysMessageType {
 	Confirmation = 'Confirmation',
 	ConfirmationWithCancel = 'ConfirmationWithCancel',
 }
+
+// 錯誤訊息類型
+export enum ErrorPopupContent {
+	InternalServer = 'Error.__internal_server',
+	IncorrectInputData = 'Error.__Incorrect_Input_Data',
+}
