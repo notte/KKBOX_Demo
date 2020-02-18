@@ -16,8 +16,8 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-import MaiinListCategories from '@/components/MaiinListCategories.vue';
-import MaiinCategoryList from '@/components/MaiinCategoryList.vue';
+import MaiinListCategories from '@/components/MainList/MaiinListCategories.vue';
+import MaiinCategoryList from '@/components/MainList/MaiinCategoryList.vue';
 import Album from '@/components/Album.vue';
 import Artist from '@/components/Artist.vue';
 import Playlist from '@/components/Playlist.vue';

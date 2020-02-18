@@ -1,3 +1,5 @@
+// models > status，為管理類別的檔案，例如訊息類型：錯誤、成功、確認等
+
 // 紀錄當前熱門歌單顯示內容
 export enum PopularType {
 	// 熱門類別列表

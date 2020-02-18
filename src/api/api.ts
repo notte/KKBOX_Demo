@@ -1,6 +1,8 @@
 import Handler from '@/utilities/api-handle';
 import * as Model from '@/models/interfaces/common';
 
+// 共用api
+
 export default {
 	async getToken(payload: Model.IgetTokenRequest): Promise<Model.IgetTokenReponse> {
 		const config = {
@@ -20,12 +22,4 @@ export default {
 		const result = await Handler.request(config);
 		return <Model.ISearchReponse>result.data;
 	},
-	// async getNewHitsPlaylists(): Promise<Model.getNewHitsPlaylistsReponse> {
-	// 	const config = {
-	// 		method: 'get',
-	// 		url: `/new-hits-playlists`,
-	// 	};
-	// 	const result = await Handler.request(config);
-	// 	return <Model.ISearchReponse>result.data;
-	// },
 };

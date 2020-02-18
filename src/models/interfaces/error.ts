@@ -1,4 +1,4 @@
-// import { SysMessageType } from '@/models/status/type';
+// 錯誤訊息
 
 export interface IError {
 	traceId: string;

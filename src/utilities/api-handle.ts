@@ -9,27 +9,23 @@ import { requestSuccess, requestFail, responseSuccess, responseFail } from './er
 class HttpAxios {
 	constructor() {}
 	async request<T>(cfg: AxiosRequestConfig) {
+		cfg.headers = {
+			Accept: 'application/x-www-form-urlencoded',
+			'Content-Type': 'application/x-www-form-urlencoded',
+		};
+
 		// 如果在Storage中取得Token，夾帶在header中
 		if (localStorage.getItem('accessToken')) {
 			cfg.headers = {
 				Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-				Accept: 'application/x-www-form-urlencoded',
-				'Content-Type': 'application/x-www-form-urlencoded',
-			};
-		} else {
-			cfg.headers = {
-				Accept: 'application/x-www-form-urlencoded',
-				'Content-Type': 'application/x-www-form-urlencoded',
 			};
 		}
-
 		// 建立axios實體
 		const instance = axios.create();
 
 		// 請求攔截
 		instance.interceptors.request.use(
 			config => requestSuccess(config),
-			// 將err帶入
 			err => requestFail(err)
 		);
 

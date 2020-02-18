@@ -1,8 +1,9 @@
 <template>
+	<!-- 熱門歌單類別列表 -->
 	<div>
 		<el-page-header title content="熱門歌單"></el-page-header>
 		<el-row>
-			<!-- <el-col :span="5">
+			<el-col :span="5">
 				<el-card shadow="hover" :body-style="{ padding: '0px' }">
 					<img
 						src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
@@ -12,7 +13,7 @@
 						<span>【封面人物：婁峻碩】懂玩懂創作的婁峻碩 Shou，在 2020 過年之際，發行最新的拜年單曲〈恭嘻發彩〉！利用嘻哈元素替過年增添色彩，讓拜年不再一成不變。</span>
 					</div>
 				</el-card>
-			</el-col> -->
+			</el-col>
 		</el-row>
 	</div>
 </template>
@@ -20,8 +21,25 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
+import Api from '@/api/hits-playlists-api';
+import * as Model from '@/models/interfaces/hitsPlaylists';
+
+// 錯誤訊息：Type 'X' is missing the following properties from type 'X': length, pop, push, concat, and 28 more.
+// 解決方法為改宣告方式，錯誤為 -> hitsPlaylists:Model.IGetNewHitsPlaylistsReponse[] = [];
+// hitsPlaylists = {} as Model.IGetNewHitsPlaylistsReponse;
 
 @Component
-export default class PopularListMain extends Vue {}
+export default class PopularListMain extends Vue {
+	hitsPlaylists = {} as Model.IGetNewHitsPlaylistsReponse;
+	// Playlists: Model.IGetNewHitsPlaylistsReponse.data[] = [];
+	created() {
+		Api.getNewHitsPlaylists()
+			.then(res => {
+				this.hitsPlaylists = res;
+				// this.Playlists = this.hitsPlaylists.data;
+			})
+			.catch(err => {});
+	}
+}
 </script>
 <style lang="scss" scoped></style>

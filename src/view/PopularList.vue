@@ -10,7 +10,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-import PopularListMain from '@/components/PopularListMain.vue';
+import PopularListMain from '@/components/PopularList/PopularListMain.vue';
 import Playlist from '@/components/Playlist.vue';
 import Album from '@/components/Album.vue';
 import Artist from '@/components/Artist.vue';

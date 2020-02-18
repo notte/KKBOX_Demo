@@ -1,21 +1,21 @@
-export interface IgetNewHitsPlaylistsReponse {
+export interface IGetNewHitsPlaylistsReponse {
 	data: IData[];
 	paging: IPaging;
 	summary: ISummary;
 }
 
-interface ISummary {
+export interface ISummary {
 	total: number;
 }
 
-interface IPaging {
+export interface IPaging {
 	offset: number;
 	limit: number;
 	previous: void;
 	next: void;
 }
 
-interface IData {
+export interface IData {
 	id: string;
 	title: string;
 	description: string;
@@ -25,7 +25,7 @@ interface IData {
 	owner: IOwner;
 }
 
-interface IOwner {
+export interface IOwner {
 	id: string;
 	url: string;
 	name: string;
@@ -33,7 +33,7 @@ interface IOwner {
 	images: IImag[];
 }
 
-interface IImag {
+export interface IImag {
 	height: number;
 	width: number;
 	url: string;

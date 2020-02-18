@@ -1,8 +1,6 @@
 import { IError } from '@/models/interfaces/error';
 import EventBus from '@/utilities/event-bus';
 import Vue from 'vue';
-// import Cookies from 'js-cookie';
-import { Message } from 'element-ui';
 
 //  請求成功，把config直接帶入
 const requestSuccess = (config: any) => {
@@ -12,7 +10,9 @@ const requestSuccess = (config: any) => {
 //  請求失敗，超時
 const requestFail = (error: any) => {
 	err.error.message = '[token null] request fail';
+	// 發送api-error事件，並帶入err物件
 	EventBus.$emit('api-error', err);
+	// 返回給Promise
 	return Promise.reject(error);
 };
 
@@ -21,7 +21,7 @@ const responseSuccess = (response: any) => {
 	return Promise.resolve(response);
 };
 
-// 回應失敗，回傳err物件
+// 回應失敗
 const responseFail = (errorData: any) => {
 	const { traceId, error } = <IError>errorData.response.data;
 	// 有錯誤物件
@@ -41,12 +41,13 @@ const responseFail = (errorData: any) => {
 		// 如果都沒有，只帶入訊息
 		err.error.message = JSON.stringify(errorData);
 	}
-	// 用event-bus傳err
+	// 發送api-error事件，並帶入err物件
 	EventBus.$emit('api-error', err);
 	// 返回給Promise物件
 	return Promise.reject(err);
 };
 
+// err發送錯誤的enum
 let err: IError = {
 	traceId: '',
 	error: { code: '', message: '' },

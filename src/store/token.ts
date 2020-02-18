@@ -1,4 +1,5 @@
 import { IActionContextBasic } from '@/store/index';
+// 引入commit及dispatch
 
 export interface IState {
 	publicToken: string;
