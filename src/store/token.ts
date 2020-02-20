@@ -14,6 +14,7 @@ const initState: IState = {
 };
 
 const getters = {
+	// 映射state
 	publicToken: (state: IState) => state.publicToken,
 	userToken: (state: IState) => state.userToken,
 };

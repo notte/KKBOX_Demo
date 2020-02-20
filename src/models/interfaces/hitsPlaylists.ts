@@ -1,3 +1,4 @@
+// 最新主題熱門歌單
 export interface IGetNewHitsPlaylistsReponse {
 	data: IData[];
 	paging: IPaging;

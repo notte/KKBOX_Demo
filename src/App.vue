@@ -59,7 +59,8 @@ const qs = require('qs');
 export default class App extends Vue {
 	@tokenModule.State('publicToken') Token!: string;
 	getTokenrequest = {} as Model.IgetTokenRequest;
-	// getSearch = {} as Model.ISearchRequest;
+
+	// private表示為私人的
 	@Action('Token/setPublicToken') private setPublicToken!: any;
 	created() {
 		this.getTokenrequest.grant_type = 'client_credentials';

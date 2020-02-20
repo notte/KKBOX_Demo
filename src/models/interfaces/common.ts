@@ -14,7 +14,6 @@ export interface IgetTokenReponse {
 }
 
 // Search API
-
 export interface ISearchRequest {
 	q: string;
 	territory: string;

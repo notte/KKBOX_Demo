@@ -1,4 +1,6 @@
+// 帶入api handler，透過此去call api
 import Handler from '@/utilities/api-handle';
+// 管理request及reponse型別
 import * as Model from '@/models/interfaces/common';
 
 // 共用api

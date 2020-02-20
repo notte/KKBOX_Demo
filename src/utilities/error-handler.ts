@@ -47,7 +47,7 @@ const responseFail = (errorData: any) => {
 	return Promise.reject(err);
 };
 
-// err發送錯誤的enum
+// 宣告err類別為IError，然後預設為空值
 let err: IError = {
 	traceId: '',
 	error: { code: '', message: '' },
