@@ -3,14 +3,13 @@
 	<div>
 		<el-page-header title content="熱門歌單"></el-page-header>
 		<el-row>
-			<el-col :span="5">
+			<el-col :span="12" v-for="item in hitsPlaylists" :key="item.id">
 				<el-card shadow="hover" :body-style="{ padding: '0px' }">
-					<img
-						src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-					/>
-					<div class="el-card-text" style="padding: 14px;">
-						<h1>好吃的汉堡</h1>
-						<span>【封面人物：婁峻碩】懂玩懂創作的婁峻碩 Shou，在 2020 過年之際，發行最新的拜年單曲〈恭嘻發彩〉！利用嘻哈元素替過年增添色彩，讓拜年不再一成不變。</span>
+					<img :src="item.images[2].url" />
+					<div class="el-card-text">
+						<h1>{{item.title}}</h1>
+						<h5>{{item.updated_at.substr(0,10)}}</h5>
+						<span>{{item.description}}</span>
 					</div>
 				</el-card>
 			</el-col>
@@ -22,7 +21,11 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import Api from '@/api/hits-playlists-api';
+import * as EventBus from '@/utilities/event-bus';
 import * as Model from '@/models/interfaces/hitsPlaylists';
+// import * as Status from '@/models/status/type';
+
+import { ErrorPopupContent, SysMessageType } from '@/models/status/type';
 
 // 錯誤訊息：Type 'X' is missing the following properties from type 'X': length, pop, push, concat, and 28 more.
 // 解決方法為改宣告方式，錯誤為 -> hitsPlaylists:Model.IGetNewHitsPlaylistsReponse[] = [];
@@ -30,16 +33,26 @@ import * as Model from '@/models/interfaces/hitsPlaylists';
 
 @Component
 export default class PopularListMain extends Vue {
-	hitsPlaylists = {} as Model.IGetNewHitsPlaylistsReponse;
-	// Playlists: Model.IGetNewHitsPlaylistsReponse.data[] = [];
+	// hitsPlaylists = {} as Model.IGetNewHitsPlaylistsReponse;
+	hitsPlaylists: Model.IData[] = [];
+
 	created() {
 		Api.getNewHitsPlaylists()
 			.then(res => {
-				this.hitsPlaylists = res;
-				// this.Playlists = this.hitsPlaylists.data;
+				this.hitsPlaylists = res.data;
+				// console.log(this.hitsPlaylists);
 			})
-			.catch(err => {});
+			.catch(err => {
+				EventBus.SystemAlert(SysMessageType.Error, ErrorPopupContent.InternalServer);
+			});
 	}
 }
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.el-card__body {
+	.el-card-text {
+		height: 165px !important;
+		padding: 15px;
+	}
+}
+</style>
