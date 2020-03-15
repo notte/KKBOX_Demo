@@ -22,6 +22,15 @@ a {
 	.el-card {
 		margin: 15px;
 
+		.el-card__body {
+			cursor: pointer;
+
+			.el-card-text {
+				height: 165px !important;
+				padding: 15px;
+			}
+		}
+
 		img {
 			width: 100%;
 			height: auto;

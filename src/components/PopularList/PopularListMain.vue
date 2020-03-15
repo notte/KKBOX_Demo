@@ -3,7 +3,12 @@
 	<div>
 		<el-page-header title content="熱門歌單"></el-page-header>
 		<el-row>
-			<el-col :span="12" v-for="item in hitsPlaylists" :key="item.id">
+			<el-col
+				:span="12"
+				v-for="item in hitsPlaylists"
+				:key="item.id"
+				@click.native="getPlaylist(item.id)"
+			>
 				<el-card shadow="hover" :body-style="{ padding: '0px' }">
 					<img :src="item.images[2].url" />
 					<div class="el-card-text">
@@ -19,13 +24,11 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
 import Api from '@/api/hits-playlists-api';
 import * as EventBus from '@/utilities/event-bus';
 import * as Model from '@/models/interfaces/hitsPlaylists';
-// import * as Status from '@/models/status/type';
-
-import { ErrorPopupContent, SysMessageType } from '@/models/status/type';
+import * as Status from '@/models/status/type';
 
 // 錯誤訊息：Type 'X' is missing the following properties from type 'X': length, pop, push, concat, and 28 more.
 // 解決方法為改宣告方式，錯誤為 -> hitsPlaylists:Model.IGetNewHitsPlaylistsReponse[] = [];
@@ -35,6 +38,7 @@ import { ErrorPopupContent, SysMessageType } from '@/models/status/type';
 export default class PopularListMain extends Vue {
 	// hitsPlaylists = {} as Model.IGetNewHitsPlaylistsReponse;
 	hitsPlaylists: Model.IData[] = [];
+	@Prop(Function) private isShow!: any;
 
 	created() {
 		Api.getNewHitsPlaylists()
@@ -43,8 +47,15 @@ export default class PopularListMain extends Vue {
 				// console.log(this.hitsPlaylists);
 			})
 			.catch(err => {
-				EventBus.SystemAlert(SysMessageType.Error, ErrorPopupContent.InternalServer);
+				EventBus.SystemAlert(Status.SysMessageType.Error, Status.ErrorPopupContent.InternalServer);
 			});
+	}
+	// 發送事件，帶入對應的id以及型別
+	getPlaylist(id: string): void {
+		EventBus.getPlaylistList(id, Status.PopularType.Playlist);
+	}
+	mounted() {
+		// console.log(this.isShow);
 	}
 }
 </script>

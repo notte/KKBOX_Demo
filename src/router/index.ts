@@ -13,9 +13,9 @@ const routes = [
 		name: 'PopularList',
 		component: () => import('@/view/PopularList.vue'),
 		children: [
-			{ path: 'Playlist', name: 'Playlist', component: () => import('@/components/Playlist.vue') },
-			{ path: 'Album', name: 'Album', component: () => import('@/components/Album.vue') },
-			{ path: 'Artist', name: 'Artist', component: () => import('@/components/Artist.vue') },
+			{ path: 'Playlist', name: 'Playlist' },
+			{ path: 'Album', name: 'Album' },
+			{ path: 'Artist', name: 'Artist' },
 		],
 	},
 	{
@@ -23,10 +23,10 @@ const routes = [
 		name: 'MainList',
 		component: () => import('@/view/MainList.vue'),
 		children: [
-			{ path: 'MainType', name: 'MainType', component: () => import('@/components/Playlist.vue') },
-			{ path: 'Playlist', name: 'MainPlaylist', component: () => import('@/components/Playlist.vue') },
-			{ path: 'Album', name: 'MainAlbum', component: () => import('@/components/Album.vue') },
-			{ path: 'Artist', name: 'MainArtist', component: () => import('@/components/Artist.vue') },
+			{ path: 'MainType', name: 'MainType' },
+			{ path: 'Playlist', name: 'MainPlaylist' },
+			{ path: 'Album', name: 'MainAlbum' },
+			{ path: 'Artist', name: 'MainArtist' },
 		],
 	},
 	{

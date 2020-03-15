@@ -49,5 +49,3 @@ export default class Playlist extends Vue {
 	}
 }
 </script>
-<style lang="scss" scoped>
-</style>

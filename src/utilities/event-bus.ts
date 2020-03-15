@@ -1,12 +1,20 @@
 import Vue from 'vue';
-import { SysMessageType } from '@/models/status/type';
+import * as Status from '@/models/status/type';
 
 // 系統訊息，參數為型別（帶入enum）、訊息（帶入response）
-export const SystemAlert = (type: SysMessageType, message: string) => {
+export const SystemAlert = (type: Status.SysMessageType, message: string) => {
 	// 發送system-alert事件
 	EventBus.$emit('system-alert', {
 		type,
 		message,
+	});
+};
+
+// 傳遞歌單
+export const getPlaylistList = (id: string, tab: Status.PopularType) => {
+	// 發送事件
+	EventBus.$emit('get-playlist', {
+		id, tab
 	});
 };
 
