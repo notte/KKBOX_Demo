@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
+import { Component, Watch } from 'vue-property-decorator';
 import PopularListMain from '@/components/PopularList/PopularListMain.vue';
 import Playlist from '@/components/Common/Playlist.vue';
 import Album from '@/components/Common/Album.vue';
@@ -46,6 +46,13 @@ export default class PopularList extends Vue {
 		// return true;
 		// this.$router.push({ name: this.currentTab }).catch(err => {});
 		return this.currentTab === tab ? true : false;
+	}
+
+	@Watch('$route')
+	checkCurrentTab() {
+		EventBus.$on('get-playlist', (id: string, tab: string) => {
+			console.log(id);
+		});
 	}
 
 	mounted() {

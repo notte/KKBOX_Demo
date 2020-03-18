@@ -50,9 +50,11 @@ export default class PopularListMain extends Vue {
 				EventBus.SystemAlert(Status.SysMessageType.Error, Status.ErrorPopupContent.InternalServer);
 			});
 	}
-	// 發送事件，帶入對應的id以及型別
 	getPlaylist(id: string): void {
+		// 發送事件，帶入對應的id以及型別
 		EventBus.getPlaylistList(id, Status.PopularType.Playlist);
+		// router跳轉
+		this.$router.push({ name: 'Playlist' });
 	}
 	mounted() {
 		// console.log(this.isShow);
