@@ -12,4 +12,12 @@ export default {
 		const result = await Handler.request(config);
 		return <Model.IGetNewHitsPlaylistsReponse>result.data;
 	},
+	async getPlaylist(id: string): Promise<Model.IgetPlaylistReponse> {
+		const config = {
+			method: 'get',
+			url: `/api/new-hits-playlists/${id}?territory=TW`,
+		};
+		const result = await Handler.request(config);
+		return <Model.IgetPlaylistReponse>result.data;
+	},
 };

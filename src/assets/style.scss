@@ -16,6 +16,31 @@ a {
 	background-color: rgb(238, 241, 246);
 }
 
+.el-main {
+
+	ul {
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
+		color: #333;
+		display: flex;
+		width: 70%;
+		list-style: none;
+		margin: 50px;
+		border-bottom: 1px solid rgb(238, 241, 246);
+
+		li {
+			flex: 1;
+			margin: 15px 0;
+			vertical-align: middle;
+
+			img {
+				width: 150px;
+			}
+		}
+	}
+}
+
 .el-container {
 	height: 100vh;
 

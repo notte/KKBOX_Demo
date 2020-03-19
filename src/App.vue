@@ -42,10 +42,11 @@ import { Component } from 'vue-property-decorator';
 import PopularList from '@/view/PopularList.vue';
 import MainList from '@/view/MainList.vue';
 import Me from '@/view/Me.vue';
-import Api from '@/api/api';
+import Api from '@/api/common';
 import * as Model from '@/models/interfaces/common';
 import EventBus from '@/utilities/event-bus';
 import { ErrorPopupContent, SysMessageType } from '@/models/status/type';
+
 const tokenModule = namespace('Token');
 const qs = require('qs');
 

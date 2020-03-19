@@ -36,7 +36,7 @@ class HttpAxios {
 		);
 
 		let result;
-		// 這裡要補足知識
+
 		try {
 			result = await instance.request<T>(cfg);
 			return Promise.resolve(result);

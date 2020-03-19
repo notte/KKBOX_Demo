@@ -38,34 +38,19 @@ import * as Status from '@/models/status/type';
 export default class PopularListMain extends Vue {
 	// hitsPlaylists = {} as Model.IGetNewHitsPlaylistsReponse;
 	hitsPlaylists: Model.IData[] = [];
-	@Prop(Function) private isShow!: any;
 
 	created() {
 		Api.getNewHitsPlaylists()
 			.then(res => {
 				this.hitsPlaylists = res.data;
-				// console.log(this.hitsPlaylists);
 			})
 			.catch(err => {
 				EventBus.SystemAlert(Status.SysMessageType.Error, Status.ErrorPopupContent.InternalServer);
 			});
 	}
 	getPlaylist(id: string): void {
-		// 發送事件，帶入對應的id以及型別
+		// 發送事件，帶入對應的id以及開啟類型
 		EventBus.getPlaylistList(id, Status.PopularType.Playlist);
-		// router跳轉
-		this.$router.push({ name: 'Playlist' });
-	}
-	mounted() {
-		// console.log(this.isShow);
 	}
 }
 </script>
-<style lang="scss" scoped>
-.el-card__body {
-	.el-card-text {
-		height: 165px !important;
-		padding: 15px;
-	}
-}
-</style>

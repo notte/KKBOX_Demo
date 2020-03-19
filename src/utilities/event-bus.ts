@@ -13,9 +13,7 @@ export const SystemAlert = (type: Status.SysMessageType, message: string) => {
 // 傳遞歌單
 export const getPlaylistList = (id: string, tab: Status.PopularType) => {
 	// 發送事件
-	EventBus.$emit('get-playlist', {
-		id, tab
-	});
+	EventBus.$emit('get-playlist', { id, tab });
 };
 
 const EventBus = new Vue();

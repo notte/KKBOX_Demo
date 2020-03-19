@@ -1,21 +1,21 @@
 <template>
 	<div>
-		<PopularListMain v-if="isShow('PopularList')" :isShow="isShow" />
-		<Playlist v-if="isShow('Playlist')" />
-		<!-- <Album /> -->
-		<!-- <Artist /> -->
+		<!-- <PopularListMain v-if="isShow('PopularList')" /> -->
+		<Playlist />
+		<!-- v-if="isShow('Playlist')" :PlaylistID="PlaylistID"  -->
+		<!-- <Album v-if="isShow('Album')" /> -->
+		<!-- <Artist v-if="isShow('Artist')" /> -->
 	</div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Watch } from 'vue-property-decorator';
+import { Component, Watch, Prop } from 'vue-property-decorator';
 import PopularListMain from '@/components/PopularList/PopularListMain.vue';
 import Playlist from '@/components/Common/Playlist.vue';
 import Album from '@/components/Common/Album.vue';
 import Artist from '@/components/Common/Artist.vue';
 import { PopularType } from '@/models/status/type';
-// import * as EventBus from '@/utilities/event-bus';
 import EventBus from '@/utilities/event-bus';
 
 @Component({
@@ -27,38 +27,26 @@ import EventBus from '@/utilities/event-bus';
 	},
 })
 export default class PopularList extends Vue {
-	currentTab: string = PopularType.PopularList;
+	currentType: string = PopularType.PopularList;
 	PopularList: PopularType = PopularType.PopularList;
 	Playlist: PopularType = PopularType.Playlist;
 	Album: PopularType = PopularType.Album;
 	Artist: PopularType = PopularType.Artist;
-
-	created() {}
+	PlaylistID: string = '';
 
 	// 判斷當前要顯示哪個組件
 	isShow(tab: PopularType): boolean {
-		// this.$router.push({ name: tab }).catch(err => {});
-		// if (tab === '/' + location.pathname) {
-
-		// } else {
-		// }
-		// this.currentTab = tab;
-		// return true;
-		// this.$router.push({ name: this.currentTab }).catch(err => {});
-		return this.currentTab === tab ? true : false;
-	}
-
-	@Watch('$route')
-	checkCurrentTab() {
-		EventBus.$on('get-playlist', (id: string, tab: string) => {
-			console.log(id);
-		});
+		return this.currentType === tab ? true : false;
 	}
 
 	mounted() {
-		EventBus.$on('get-playlist', (content: any) => {
-			// this.$router.push({ name: content.tab }).catch(err => {});
-			// this.currentTab = content.tab;
+		// 接收 get-playlist 事件，點擊歌單
+		EventBus.$on('get-playlist', (param: any) => {
+			this.PlaylistID = param.id;
+			// router跳轉
+			this.$router.push({ name: 'Playlist' }).catch(err => {});
+			// 切換顯示 component
+			this.currentType = param.tab;
 		});
 	}
 }

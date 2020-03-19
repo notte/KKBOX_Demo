@@ -1,3 +1,5 @@
+import { getPlaylistList } from '@/utilities/event-bus';
+
 // models > interfaces，為管理資料型別的檔案
 
 // get Token API
@@ -23,12 +25,6 @@ export interface ISearchRequest {
 
 export interface ISearchReponse {
 	tracks: ITrack;
-	paging: IPaging;
-	summary: ISummary;
-}
-
-export interface ITrack {
-	data: IData[];
 	paging: IPaging;
 	summary: ISummary;
 }
@@ -78,4 +74,10 @@ export interface IImag {
 	height: number;
 	width: number;
 	url: string;
+}
+
+export interface ITrack {
+	data: IData[];
+	paging: IPaging;
+	summary: ISummary;
 }
