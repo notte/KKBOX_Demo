@@ -14,25 +14,47 @@ a {
 	padding: 20px;
 	width: 250px;
 	background-color: rgb(238, 241, 246);
+
 }
+
+// 頁碼
+.block {
+	text-align: center;
+	margin-top: 50px;
+
+	.el-pagination {
+
+		button {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		ul {
+			vertical-align: middle;
+			width: auto;
+			display: inline-block;
+			margin: 0;
+		}
+	}
+}
+
+// 列表表格
 
 .el-main {
 
 	ul {
-		position: relative;
-		left: 50%;
-		transform: translateX(-50%);
+		margin: 0 auto;
+		width: 70%;
 		color: #333;
 		display: flex;
-		width: 70%;
 		list-style: none;
-		margin: 50px;
+		padding-left: 0;
 		border-bottom: 1px solid rgb(238, 241, 246);
+		align-items: center;
 
 		li {
 			flex: 1;
-			margin: 15px 0;
-			vertical-align: middle;
+			margin: 15px;
 
 			img {
 				width: 150px;

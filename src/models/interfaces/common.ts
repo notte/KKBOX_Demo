@@ -3,6 +3,7 @@ import { getPlaylistList } from '@/utilities/event-bus';
 // models > interfaces，為管理資料型別的檔案
 
 // get Token API
+
 export interface IgetTokenRequest {
 	grant_type: string;
 	client_id: string;
@@ -16,6 +17,7 @@ export interface IgetTokenReponse {
 }
 
 // Search API
+
 export interface ISearchRequest {
 	q: string;
 	territory: string;
@@ -27,6 +29,42 @@ export interface ISearchReponse {
 	tracks: ITrack;
 	paging: IPaging;
 	summary: ISummary;
+}
+
+
+// getPlaylist，取得歌單列表
+
+export interface IgetPlaylistReponse {
+	tracks: ITrack;
+	id: string;
+	title: string;
+	description: string;
+	url: string;
+	images: IImag[];
+	updated_at: string;
+	owner: IOwner;
+}
+
+// 取得專輯
+
+export interface IAlbum {
+	id: string;
+	name: string;
+	url: string;
+	explicitness: boolean;
+	available_territories: string[];
+	release_date: string;
+	images: IImag[];
+	artist: IArtist;
+}
+
+// 取得歌手
+
+export interface IArtist {
+	id: string;
+	name: string;
+	url: string;
+	images: IImag[];
 }
 
 export interface ISummary {
@@ -52,21 +90,11 @@ export interface IData {
 	album: IAlbum;
 }
 
-export interface IAlbum {
+export interface IOwner {
 	id: string;
-	name: string;
 	url: string;
-	explicitness: boolean;
-	available_territories: string[];
-	release_date: string;
-	images: IImag[];
-	artist: IArtist;
-}
-
-export interface IArtist {
-	id: string;
 	name: string;
-	url: string;
+	description: string;
 	images: IImag[];
 }
 
@@ -80,4 +108,11 @@ export interface ITrack {
 	data: IData[];
 	paging: IPaging;
 	summary: ISummary;
+}
+
+export interface IPlaylist {
+	id: string;
+	name: string;
+	release_date: string;
+	artist: object;
 }

@@ -5,34 +5,7 @@ export interface IGetNewHitsPlaylistsReponse {
 	summary: ISummary;
 }
 
-// getPlaylist，取得歌單列表
-
-export interface IgetPlaylistReponse {
-	tracks: ITrack;
-	id: string;
-	title: string;
-	description: string;
-	url: string;
-	images: IImag[];
-	updated_at: string;
-	owner: IOwner;
-}
-
 // 共用組件
-
-export interface ITrack {
-	data: IData[];
-	paging: IPaging;
-	summary: ISummary;
-}
-
-export interface IOwner {
-	id: string;
-	url: string;
-	name: string;
-	description: string;
-	images: IImag[];
-}
 
 export interface ISummary {
 	total: number;
