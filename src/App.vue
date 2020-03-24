@@ -5,23 +5,17 @@
 				<el-menu default-active="1">
 					<router-link to="/PopularList">
 						<el-menu-item index="1">
-							<template slot="title">
-								<i class="el-icon-message"></i>熱門歌單
-							</template>
+							<template slot="title"> <i class="el-icon-message"></i>熱門歌單 </template>
 						</el-menu-item>
 					</router-link>
 					<router-link to="/MainList">
 						<el-menu-item index="2">
-							<template slot="title">
-								<i class="el-icon-message"></i>主題歌單
-							</template>
+							<template slot="title"> <i class="el-icon-message"></i>主題歌單 </template>
 						</el-menu-item>
 					</router-link>
 					<router-link to="/Profile">
 						<el-menu-item index="3">
-							<template slot="title">
-								<i class="el-icon-message"></i>個人歌單
-							</template>
+							<template slot="title"> <i class="el-icon-message"></i>個人歌單 </template>
 						</el-menu-item>
 					</router-link>
 				</el-menu>
@@ -73,6 +67,15 @@ export default class App extends Vue {
 		});
 	}
 	mounted() {
+		// 接收 api-error 事件
+		EventBus.$on('api-error', (err: any) => {
+			// console.log(err.error.message);
+			this.$message({
+				showClose: true,
+				message: err.error.message,
+				type: 'error',
+			});
+		});
 		// this.getSearch.q = '周杰倫';
 		// this.getSearch.territory = 'TW';
 		// this.getSearch.type = 'track';

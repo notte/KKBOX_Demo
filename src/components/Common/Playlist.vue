@@ -6,9 +6,9 @@
 				<li>
 					<img :src="item.Image" />
 				</li>
-				<li>{{item.name}}</li>
-				<li>{{item.date}}</li>
-				<li>{{item.artist}}</li>
+				<li>{{ item.name }}</li>
+				<li>{{ item.date }}</li>
+				<li>{{ item.artist }}</li>
 			</ul>
 			<div class="block">
 				<el-pagination layout="prev, pager, next" :total="1000"></el-pagination>
@@ -29,7 +29,7 @@ export default class Playlist extends Vue {
 	PlaylistTitle: string = '';
 	Playlist: object[] = [];
 	created() {
-		Api.getPlaylist('DZrC8m29ciOFY2JAm3').then(res => {
+		Api.getPlaylist(this.PlaylistID).then(res => {
 			this.PlaylistTitle = res.title;
 
 			for (const item of res.tracks.data) {
