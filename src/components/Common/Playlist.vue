@@ -37,8 +37,16 @@ export default class Playlist extends Vue {
 				const { id, name, release_date, artist } = album;
 				this.Playlist.push({ id, Image: album.images[1].url, name, date: release_date, artist: artist.name, artistID: artist.id });
 			}
+			const newData: object[] = [];
 
-			this.Playlist.forEach(item => {});
+			// item 為陣列物件的每一個物件，i 為物件索引
+			this.Playlist.forEach((item, i) => {
+				// 每十頁
+				if (i % 10 === 0) {
+					// 就新增一個空陣列
+					newData.push([]);
+				}
+			});
 		});
 	}
 	mounted() {}

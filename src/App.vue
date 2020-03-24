@@ -5,17 +5,23 @@
 				<el-menu default-active="1">
 					<router-link to="/PopularList">
 						<el-menu-item index="1">
-							<template slot="title"> <i class="el-icon-message"></i>熱門歌單 </template>
+							<template slot="title">
+								<i class="el-icon-message"></i>熱門歌單
+							</template>
 						</el-menu-item>
 					</router-link>
 					<router-link to="/MainList">
 						<el-menu-item index="2">
-							<template slot="title"> <i class="el-icon-message"></i>主題歌單 </template>
+							<template slot="title">
+								<i class="el-icon-message"></i>主題歌單
+							</template>
 						</el-menu-item>
 					</router-link>
 					<router-link to="/Profile">
 						<el-menu-item index="3">
-							<template slot="title"> <i class="el-icon-message"></i>個人歌單 </template>
+							<template slot="title">
+								<i class="el-icon-message"></i>個人歌單
+							</template>
 						</el-menu-item>
 					</router-link>
 				</el-menu>
@@ -33,25 +39,28 @@
 import Vue from 'vue';
 import { State, Action, Getter, namespace } from 'vuex-class';
 import { Component } from 'vue-property-decorator';
-import PopularList from '@/view/PopularList.vue';
-import MainList from '@/view/MainList.vue';
-import Me from '@/view/Me.vue';
+// import PopularList from '@/view/PopularList.vue';
+// import MainList from '@/view/MainList.vue';
+// import User from '@/view/User.vue';
 import Api from '@/api/common';
 import * as Model from '@/models/interfaces/common';
 import EventBus from '@/utilities/event-bus';
 import { ErrorPopupContent, SysMessageType } from '@/models/status/type';
 
+// 取得 Token 命名空間
 const tokenModule = namespace('Token');
+// 將物件與URL互相轉換格式的方法
 const qs = require('qs');
 
 @Component({
 	components: {
-		PopularList,
-		MainList,
-		Me,
+		// PopularList,
+		// MainList,
+		// User,
 	},
 })
 export default class App extends Vue {
+	// 映射 state 到變數 Token
 	@tokenModule.State('publicToken') Token!: string;
 	getTokenrequest = {} as Model.IgetTokenRequest;
 
