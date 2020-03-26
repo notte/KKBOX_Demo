@@ -1,5 +1,3 @@
-import { getPlaylistList } from '@/utilities/event-bus';
-
 // models > interfaces，為管理資料型別的檔案
 
 // get Token API

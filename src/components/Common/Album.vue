@@ -1,10 +1,10 @@
 <template>
 	<div style="text-align:center">
-		<el-page-header title content="專輯"></el-page-header>
-		<img :src="data.tableData[0].url" alt style="width: 300px;height: 300px" />
-		<h1>時間的輪 I will Be Your Memory</h1>
-		<span>2020-01-20</span>
-		<p>陳忻玥 (Vicky Chen)</p>
+		<el-page-header title :content="Album.album_name"></el-page-header>
+		<img :src="Album.images" alt style="width: 300px;height: 300px" />
+		<h1>{{Album.album_name}}</h1>
+		<span>{{Album.date}}</span>
+		<p>{{Album.artist}}</p>
 	</div>
 </template>
 
@@ -16,33 +16,15 @@ import Api from '@/api/common';
 @Component
 export default class Album extends Vue {
 	@Prop(String) readonly AlbumID!: string;
-	tableData: string[] = [];
-	data = {
-		tableData: [
-			{
-				url: 'https://i.kfs.io/album/global/67948281,0v1/fit/500x500.jpg',
-				date: '時間的輪 I will Be Your Memory',
-				name: '陳忻玥 (Vicky Chen)',
-			},
-		],
-	};
+	// 專輯資料
+	Album: object = {};
+
 	created() {
 		Api.getAlbum(this.AlbumID).then(res => {
 			console.log(res);
+			const { name, release_date, images, artist } = res;
+			this.Album = { album_name: name, date: release_date, images: images[1].url, artist: artist.name };
 		});
-		// console.log(this.AlbumID);
 	}
 }
 </script>
-<style lang="scss" scoped>
-span {
-	color: #595959;
-	font-size: 14px;
-}
-
-p {
-	color: #333;
-	font-size: 14px;
-	font-weight: 900;
-}
-</style>
