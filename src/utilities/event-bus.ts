@@ -10,10 +10,10 @@ export const SystemAlert = (type: Status.SysMessageType, message: string) => {
 	});
 };
 
-// 傳遞歌單
-export const getPlaylistList = (id: string, tab: Status.PopularType) => {
+// 傳遞歌單、專輯、歌手
+export const getInfo = (id: string, tab: Status.PopularType) => {
 	// 發送事件
-	EventBus.$emit('get-playlist', { id, tab });
+	EventBus.$emit('get-info', { id, tab });
 };
 
 const EventBus = new Vue();

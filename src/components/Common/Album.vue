@@ -10,10 +10,12 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
+import Api from '@/api/common';
 
 @Component
 export default class Album extends Vue {
+	@Prop(String) readonly AlbumID!: string;
 	tableData: string[] = [];
 	data = {
 		tableData: [
@@ -25,7 +27,10 @@ export default class Album extends Vue {
 		],
 	};
 	created() {
-		// console.log(this.data.tableData);
+		Api.getAlbum(this.AlbumID).then(res => {
+			console.log(res);
+		});
+		// console.log(this.AlbumID);
 	}
 }
 </script>

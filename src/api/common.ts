@@ -39,7 +39,7 @@ export default {
 	async getAlbum(id: string): Promise<Model.IAlbum> {
 		const config = {
 			method: 'get',
-			url: `/api/${id}?territory=TW`,
+			url: `/api//albums/${id}?territory=TW`,
 		};
 		const result = await Handler.request(config);
 		return <Model.IAlbum>result.data;

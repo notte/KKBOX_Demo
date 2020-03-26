@@ -3,18 +3,13 @@
 	<div>
 		<el-page-header title content="熱門歌單"></el-page-header>
 		<el-row>
-			<el-col
-				:span="12"
-				v-for="item in hitsPlaylists"
-				:key="item.id"
-				@click.native="getPlaylist(item.id)"
-			>
+			<el-col :span="12" v-for="item in hitsPlaylists" :key="item.id" @click.native="getPlaylist(item.id)">
 				<el-card shadow="hover" :body-style="{ padding: '0px' }">
 					<img :src="item.images[2].url" />
 					<div class="el-card-text">
-						<h1>{{item.title}}</h1>
-						<h5>{{item.updated_at.substr(0,10)}}</h5>
-						<span>{{item.description}}</span>
+						<h1>{{ item.title }}</h1>
+						<h5>{{ item.updated_at.substr(0, 10) }}</h5>
+						<span>{{ item.description }}</span>
 					</div>
 				</el-card>
 			</el-col>
@@ -50,7 +45,7 @@ export default class PopularListMain extends Vue {
 	}
 	getPlaylist(id: string): void {
 		// 發送事件，帶入對應的id以及開啟類型
-		EventBus.getPlaylistList(id, Status.PopularType.Playlist);
+		EventBus.getInfo(id, Status.PopularType.Playlist);
 	}
 }
 </script>
