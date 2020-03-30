@@ -54,13 +54,13 @@ export default {
 		return <Model.ITrack>result.data;
 	},
 	// 以歌手ID取得歌手專輯列表
-	async getArtist(id: string): Promise<Model.ITrack> {
+	async getArtist(id: string): Promise<Model.IArtistTrack> {
 		const config = {
 			method: 'get',
 			url: `/api/artists/${id}/albums?territory=TW`,
 		};
 		const result = await Handler.request(config);
-		return <Model.ITrack>result.data;
+		return <Model.IArtistTrack>result.data;
 	},
 	// async getArtist(id: string): Promise<Model.IArtist> {
 	// 	const config = {

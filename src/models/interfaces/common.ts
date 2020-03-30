@@ -114,3 +114,30 @@ export interface IPlaylist {
 	release_date: string;
 	artist: object;
 }
+
+export interface IArtistTrack {
+	data: ITrackData[];
+	paging: IPaging;
+	summary: ISummary;
+}
+
+
+export interface ITrackData {
+	// id: string;
+	// name: string;
+	// duration: number;
+	// isrc: string;
+	// url: string;
+	// 'track_number': number;
+	// explicitness: boolean;
+	// 'available_territories': string[];
+	id: string;
+	name: string;
+	url: string;
+	explicitness: boolean;
+	'available_territories': void[];
+	'release_date': string;
+	images: IImag[];
+	artist: IArtist;
+}
+

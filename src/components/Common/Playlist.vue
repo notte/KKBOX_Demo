@@ -2,7 +2,7 @@
 	<div>
 		<el-page-header title :content="PlaylistTitle"></el-page-header>
 		<div style="padding:50px 0">
-			<ul v-for="item in Playlist[currentPage]" :key="item.AlbumId">
+			<ul v-for="item in Playlist[CurrentPage]" :key="item.AlbumId">
 				<li>
 					<img @click="getAlbum(item.id)" :src="item.Image" />
 				</li>
@@ -38,12 +38,12 @@ export default class Playlist extends Vue {
 	// 總頁數，重新整理後的陣列長度
 	TotalPage: number = 0;
 	// 目前選中的頁碼
-	currentPage: number = 0;
+	CurrentPage: number = 0;
 
 	// 取得當前頁碼
 	handleCurrentChange(val: number) {
 		// 實際選中陣列 = 當前頁碼 - 1
-		this.currentPage = val - 1;
+		this.CurrentPage = val - 1;
 	}
 
 	// 取得專輯

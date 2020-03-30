@@ -7,7 +7,7 @@
 			style="width: 300px;height: 300px;"
 		/>
 		<h1 class="artist-name">陳忻玥 (Vicky Chen)</h1>
-		<el-divider>全部歌曲</el-divider>
+		<el-divider>專輯</el-divider>
 		<el-row>
 			<el-col :span="5">
 				<el-card shadow="hover" :body-style="{ padding: '0px' }">
@@ -28,11 +28,15 @@
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 import Api from '@/api/common';
+import * as Model from '@/models/interfaces/common';
 
 @Component
 export default class Artist extends Vue {
 	@Prop(String) readonly ArtistID!: string;
-
+	// 帶入ID的歌手所有專輯
+	ArtistTrack: Model.ITrackData[] = [];
+	// Artist = {} as Model.IArtist;
+	// Artist: Model.IArtist[] = [];
 	tableData: string[] = [];
 	data = {
 		tableData: [
@@ -61,8 +65,12 @@ export default class Artist extends Vue {
 	created() {
 		// console.log(this.ArtistID);
 		Api.getArtist(this.ArtistID).then(res => {
-			console.log(res);
+			// console.log(res.data);
+			this.ArtistTrack = res.data;
+			// this.Artist = this.ArtistTrack.data[0].artist;
+			console.log(this.ArtistTrack);
 		});
+		// console.log(1);
 	}
 	mounted() {}
 }
