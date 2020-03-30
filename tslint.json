@@ -5,6 +5,7 @@
 		"object-literal-sort-keys": false
 	},
 	"rules": {
+		"max-line-length": [true, 100],
 		"interface-name": false,
 		"max-line-length": {
 			"options": [300]

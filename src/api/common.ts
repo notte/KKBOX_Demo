@@ -39,9 +39,35 @@ export default {
 	async getAlbum(id: string): Promise<Model.IAlbum> {
 		const config = {
 			method: 'get',
-			url: `/api//albums/${id}?territory=TW`,
+			url: `/api/albums/${id}?territory=TW`,
 		};
 		const result = await Handler.request(config);
 		return <Model.IAlbum>result.data;
 	},
+	// 取得專輯曲目
+	async getTracks(id: string): Promise<Model.ITrack> {
+		const config = {
+			method: 'get',
+			url: `/api/albums/${id}/tracks?territory=TW`,
+		};
+		const result = await Handler.request(config);
+		return <Model.ITrack>result.data;
+	},
+	// 以歌手ID取得歌手專輯列表
+	async getArtist(id: string): Promise<Model.ITrack> {
+		const config = {
+			method: 'get',
+			url: `/api/artists/${id}/albums?territory=TW`,
+		};
+		const result = await Handler.request(config);
+		return <Model.ITrack>result.data;
+	},
+	// async getArtist(id: string): Promise<Model.IArtist> {
+	// 	const config = {
+	// 		method: 'get',
+	// 		url: `/api/artists/${id}?territory=TW`,
+	// 	};
+	// 	const result = await Handler.request(config);
+	// 	return <Model.IArtist>result.data;
+	// },
 };

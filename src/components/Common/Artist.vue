@@ -1,13 +1,19 @@
 <template>
 	<div style="text-align:center">
 		<el-page-header title content="歌手"></el-page-header>
-		<img src="https://i.kfs.io/artist/global/10012811,0v1/fit/300x300.jpg" alt style="width: 300px;height: 300px;" />
+		<img
+			src="https://i.kfs.io/artist/global/10012811,0v1/fit/300x300.jpg"
+			alt
+			style="width: 300px;height: 300px;"
+		/>
 		<h1 class="artist-name">陳忻玥 (Vicky Chen)</h1>
 		<el-divider>全部歌曲</el-divider>
 		<el-row>
 			<el-col :span="5">
 				<el-card shadow="hover" :body-style="{ padding: '0px' }">
-					<img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" />
+					<img
+						src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+					/>
 					<div class="el-card-text" style="padding: 14px;">
 						<h1>好吃的汉堡</h1>
 						<span>2018-03-10</span>
@@ -21,9 +27,12 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
+import Api from '@/api/common';
 
 @Component
 export default class Artist extends Vue {
+	@Prop(String) readonly ArtistID!: string;
+
 	tableData: string[] = [];
 	data = {
 		tableData: [
@@ -49,6 +58,12 @@ export default class Artist extends Vue {
 			},
 		],
 	};
+	created() {
+		// console.log(this.ArtistID);
+		Api.getArtist(this.ArtistID).then(res => {
+			console.log(res);
+		});
+	}
 	mounted() {}
 }
 </script>

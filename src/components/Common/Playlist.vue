@@ -8,10 +8,14 @@
 				</li>
 				<li>{{ item.name }}</li>
 				<li>{{ item.date }}</li>
-				<li>{{ item.artist }}</li>
+				<li @click="getArtist(item.artistID)">{{ item.artist }}</li>
 			</ul>
 			<div class="block">
-				<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-count="TotalPage"></el-pagination>
+				<el-pagination
+					layout="prev, pager, next"
+					@current-change="handleCurrentChange"
+					:page-count="TotalPage"
+				></el-pagination>
 			</div>
 		</div>
 	</div>
@@ -45,6 +49,10 @@ export default class Playlist extends Vue {
 	// 取得專輯
 	getAlbum(id: string) {
 		EventBus.getInfo(id, Status.PopularType.Album);
+	}
+	// 取得歌手
+	getArtist(id: string) {
+		EventBus.getInfo(id, Status.PopularType.Artist);
 	}
 
 	created() {

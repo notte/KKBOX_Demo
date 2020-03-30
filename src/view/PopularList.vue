@@ -3,7 +3,7 @@
 		<PopularListMain v-if="isShow('PopularList')" />
 		<Playlist v-if="isShow('Playlist')" :PlaylistID="id" />
 		<Album v-if="isShow('Album')" :AlbumID="id" />
-		<!-- <Artist v-if="isShow('Artist')" /> -->
+		<Artist v-if="isShow('Artist')" :ArtistID="id" />
 	</div>
 </template>
 
