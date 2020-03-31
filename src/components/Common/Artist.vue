@@ -1,26 +1,20 @@
 <template>
 	<div style="text-align:center">
-		<el-page-header title content="歌手"></el-page-header>
-		<img
-			src="https://i.kfs.io/artist/global/10012811,0v1/fit/300x300.jpg"
-			alt
-			style="width: 300px;height: 300px;"
-		/>
-		<h1 class="artist-name">陳忻玥 (Vicky Chen)</h1>
-		<el-divider>專輯</el-divider>
+		<!-- <el-page-header title :content="Artist.name"></el-page-header>
+		<img :src="Artist.images[1].url" alt style="width: 300px;height: 300px;" />
+		<h1 class="artist-name">{{Artist.name}}</h1>
+		<el-divider>發行專輯</el-divider>
 		<el-row>
-			<el-col :span="5">
+			<el-col :span="4" v-for="item in ArtistTrack" :key="item.id">
 				<el-card shadow="hover" :body-style="{ padding: '0px' }">
-					<img
-						src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-					/>
+					<img :src="item.images[1].url" />
 					<div class="el-card-text" style="padding: 14px;">
-						<h1>好吃的汉堡</h1>
-						<span>2018-03-10</span>
+						<h1>{{item.name}}</h1>
+						<span>{{item.release_date}}</span>
 					</div>
 				</el-card>
 			</el-col>
-		</el-row>
+		</el-row>-->
 	</div>
 </template>
 
@@ -35,7 +29,7 @@ export default class Artist extends Vue {
 	@Prop(String) readonly ArtistID!: string;
 	// 帶入ID的歌手所有專輯
 	ArtistTrack: Model.ITrackData[] = [];
-	// Artist = {} as Model.IArtist;
+	Artist: any;
 	// Artist: Model.IArtist[] = [];
 	tableData: string[] = [];
 	data = {
@@ -65,12 +59,16 @@ export default class Artist extends Vue {
 	created() {
 		// console.log(this.ArtistID);
 		Api.getArtist(this.ArtistID).then(res => {
-			// console.log(res.data);
+			// const { id,name,images:images[1].url } = res.data[0].artist;
 			this.ArtistTrack = res.data;
-			// this.Artist = this.ArtistTrack.data[0].artist;
-			console.log(this.ArtistTrack);
+			this.Artist = this.ArtistTrack[0].artist;
+			const { id, name, images } = this.Artist;
+			this.Artist = {};
+			this.Artist.push({ id, name, Image: images[1].url });
+			console.log();
+			// console.log(this.Artist);
+			// console.log(this.ArtistTrack);
 		});
-		// console.log(1);
 	}
 	mounted() {}
 }
