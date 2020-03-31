@@ -45,4 +45,3 @@ export default class MainList extends Vue {
 	}
 }
 </script>
-<style lang="scss" scoped></style>

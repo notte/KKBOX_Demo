@@ -1,7 +1,7 @@
 <template>
-	<div style="text-align:center">
+	<div>
 		<el-page-header title :content="Album.album_name"></el-page-header>
-		<img :src="Album.images" alt style="width: 300px;height: 300px" />
+		<img :src="Album.images" alt />
 		<h1>{{Album.album_name}}</h1>
 		<span>{{Album.date}}</span>
 		<p>{{Album.artist}}</p>

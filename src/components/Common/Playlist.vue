@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<el-page-header title :content="PlaylistTitle"></el-page-header>
-		<div style="padding:50px 0">
+		<div>
 			<ul v-for="item in Playlist[CurrentPage]" :key="item.AlbumId">
 				<li>
 					<img @click="getAlbum(item.id)" :src="item.Image" />

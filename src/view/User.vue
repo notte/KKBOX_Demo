@@ -16,5 +16,3 @@ import Profile from '@/components/User/Profile.vue';
 })
 export default class Me extends Vue {}
 </script>
-<style lang="scss" scoped>
-</style>

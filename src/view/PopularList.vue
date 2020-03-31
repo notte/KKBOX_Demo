@@ -50,4 +50,3 @@ export default class PopularList extends Vue {
 	}
 }
 </script>
-<style lang="scss" scoped></style>

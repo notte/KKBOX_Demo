@@ -1,17 +1,13 @@
 <template>
-	<div style="text-align:center">
+	<div>
 		<el-page-header title content="User Name"></el-page-header>
-		<img
-			src="https://i.kfs.io/artist/global/10012811,0v1/fit/300x300.jpg"
-			alt
-			style="width: 300px;height: 300px;"
-		/>
+		<img src="https://i.kfs.io/artist/global/10012811,0v1/fit/300x300.jpg" alt />
 		<h1 class="artist-name">id：</h1>
 		<el-divider>每日推薦</el-divider>
-		<el-table :data="data.tableData" style="width: 70%">
+		<el-table :data="data.tableData">
 			<el-table-column width="200">
 				<template slot-scope="scope">
-					<img :src="scope.row.url" alt style="width: 160px;height: 160px" />
+					<img :src="scope.row.url" alt />
 				</template>
 			</el-table-column>
 			<el-table-column prop="date" width="250"></el-table-column>
@@ -55,5 +51,3 @@ export default class Profile extends Vue {
 	};
 }
 </script>
-<style lang="scss" scoped>
-</style>

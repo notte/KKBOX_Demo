@@ -5,7 +5,6 @@
 			<el-col :span="7">
 				<el-card
 					shadow="hover"
-					:body-style="{ padding: '0px'}"
 					style="background: url('https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png');background-size: cover;"
 				>
 					<div class="el-card-text">
@@ -24,24 +23,3 @@ import { Component } from 'vue-property-decorator';
 @Component
 export default class MaiinListCategories extends Vue {}
 </script>
-<style lang="scss" scoped>
-.el-container {
-	.el-card {
-		position: relative;
-		height: 300px;
-
-		.el-card-text {
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			transform: translate(-50%, -50%);
-			width: 100%;
-			h1 {
-				font-size: 36px;
-				text-align: center;
-				margin-bottom: 0;
-			}
-		}
-	}
-}
-</style>

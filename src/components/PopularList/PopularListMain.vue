@@ -3,8 +3,13 @@
 	<div>
 		<el-page-header title content="熱門歌單"></el-page-header>
 		<el-row>
-			<el-col :span="12" v-for="item in hitsPlaylists" :key="item.id" @click.native="getPlaylist(item.id)">
-				<el-card shadow="hover" :body-style="{ padding: '0px' }">
+			<el-col
+				:span="12"
+				v-for="item in hitsPlaylists"
+				:key="item.id"
+				@click.native="getPlaylist(item.id)"
+			>
+				<el-card shadow="hover">
 					<img :src="item.images[2].url" />
 					<div class="el-card-text">
 						<h1>{{ item.title }}</h1>
