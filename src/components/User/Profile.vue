@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<el-page-header title content="User Name"></el-page-header>
 		<img src="https://i.kfs.io/artist/global/10012811,0v1/fit/300x300.jpg" alt />
 		<h1 class="artist-name">id：</h1>
 		<el-divider>每日推薦</el-divider>

@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
-		<el-container>
-			<el-header class="header_button">
+		<el-container class="project_container">
+			<header class="header_button">
 				<el-menu default-active="1">
 					<router-link to="/PopularList">
 						<el-menu-item index="1">熱門歌單</el-menu-item>
@@ -13,9 +13,11 @@
 						<el-menu-item index="3">個人歌單</el-menu-item>
 					</router-link>
 				</el-menu>
-			</el-header>
+			</header>
 			<el-main>
-				<router-view />
+				<div class="container">
+					<router-view />
+				</div>
 			</el-main>
 		</el-container>
 	</div>

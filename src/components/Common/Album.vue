@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<el-page-header title :content="Album.album_name"></el-page-header>
 		<img :src="Album.images" alt />
 		<h1>{{Album.album_name}}</h1>
 		<span>{{Album.date}}</span>

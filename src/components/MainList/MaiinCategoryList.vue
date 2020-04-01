@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<el-page-header title content="關於愛"></el-page-header>
 		<el-row>
 			<el-col :span="12">
 				<el-card shadow="hover">

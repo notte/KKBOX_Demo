@@ -1,10 +1,9 @@
 <template>
 	<!-- 熱門歌單類別列表 -->
 	<div>
-		<el-page-header title content="熱門歌單"></el-page-header>
-		<el-row>
+		<!-- <el-row>
 			<el-col
-				:span="12"
+				:span="6"
 				v-for="item in hitsPlaylists"
 				:key="item.id"
 				@click.native="getPlaylist(item.id)"
@@ -12,13 +11,25 @@
 				<el-card shadow="hover">
 					<img :src="item.images[2].url" />
 					<div class="el-card-text">
-						<h1>{{ item.title }}</h1>
+						<h3>{{ item.title.substr(0, 6) }}</h3>
 						<h5>{{ item.updated_at.substr(0, 10) }}</h5>
-						<span>{{ item.description }}</span>
+						<p>{{ item.description }}</p>
 					</div>
 				</el-card>
 			</el-col>
-		</el-row>
+		</el-row>-->
+		<ul v-for="item in hitsPlaylists" :key="item.id">
+			<li>
+				<div class="Playlist_images">
+					<img :src="item.images[2].url" alt />
+					<div class="images"></div>
+				</div>
+				<div>
+					<h3>{{ item.title.substr(0, 6) }}</h3>
+					<p>{{ item.description }}</p>
+				</div>
+			</li>
+		</ul>
 	</div>
 </template>
 

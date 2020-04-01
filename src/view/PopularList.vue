@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="PopularList">
 		<PopularListMain v-if="isShow('PopularList')" />
 		<Playlist v-if="isShow('Playlist')" :PlaylistID="id" />
 		<Album v-if="isShow('Album')" :AlbumID="id" />

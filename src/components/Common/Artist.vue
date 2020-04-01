@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<el-page-header title content="歌手"></el-page-header>
 		<img :src="Artist.images" />
 		<h1 class="artist-name">{{Artist.name}}</h1>
 		<el-divider>發行專輯</el-divider>

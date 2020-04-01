@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<el-page-header title content="主題歌單"></el-page-header>
 		<el-row>
 			<el-col :span="7">
 				<el-card

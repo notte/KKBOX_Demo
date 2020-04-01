@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<el-page-header title :content="PlaylistTitle"></el-page-header>
 		<div>
 			<ul v-for="item in Playlist[CurrentPage]" :key="item.AlbumId">
 				<li>
@@ -32,7 +31,6 @@ import * as Status from '@/models/status/type';
 @Component
 export default class Playlist extends Vue {
 	@Prop(String) readonly PlaylistID!: string;
-	PlaylistTitle: string = '';
 	// 所有歌單資料
 	Playlist: object[] = [];
 	// 總頁數，重新整理後的陣列長度
@@ -57,8 +55,6 @@ export default class Playlist extends Vue {
 
 	created() {
 		Api.getPlaylist(this.PlaylistID).then(res => {
-			this.PlaylistTitle = res.title;
-
 			for (const item of res.tracks.data) {
 				const { name } = item;
 				const { id, release_date, artist } = item.album;
