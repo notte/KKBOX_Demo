@@ -24,9 +24,10 @@
 					<img :src="item.images[2].url" alt />
 					<div class="images"></div>
 				</div>
-				<div>
+				<div class="Playlist_text">
 					<h3>{{ item.title.substr(0, 6) }}</h3>
 					<p>{{ item.description }}</p>
+					<el-button size="medium" :plain="true" :round="true" @click.native="getPlaylist(item.id)">進入歌單</el-button>
 				</div>
 			</li>
 		</ul>
