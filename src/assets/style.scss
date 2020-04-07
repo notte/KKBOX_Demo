@@ -1,4 +1,8 @@
+$white: #eff3f5;
+$MainColor: #5a0ed4;
 body {
+	font-size: 1em;
+	color: #434343;
 	overflow: hidden;
 	margin: 0;
 	font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
@@ -29,23 +33,28 @@ a {
 
 	// header 文字按鈕
 	.header_button {
-		box-shadow: 0px 2px 6px #ededed47;
-		background-image: linear-gradient(to right, #434343 0%, black 100%);
+		box-shadow: 0px 2px 4px #33333330;
+		// border-bottom: 1px solid #333;
+		// background-image: linear-gradient(to right, #434343 0%, black 100%);
 		position: fixed;
 		top: 0;
 		width: 100%;
+		z-index: 1000;
 
 		.el-menu {
 			background-color: transparent;
 			border: none;
-		}
+			.el-menu-item {
+				color: #333;
+				display: inline-block;
 
-		.el-menu-item {
-			display: inline-block;
-
-			&:hover,
-			&:focus {
-				background-color: transparent;
+				&:hover,
+				&:focus {
+					background-color: transparent;
+				}
+			}
+			.el-menu-item.is-active {
+				color: $MainColor;
 			}
 		}
 	}
@@ -66,110 +75,124 @@ a {
 	}
 }
 
-.PopularList {
-	.el-col {
-		// margin: 15px;
+// 熱門歌單
 
-		.el-card {
+ul.PopularList {
+	width: 100%;
+	margin: 20px 0;
+
+	li {
+		display: flex;
+		align-items: center;
+		.Playlist_images {
+			flex: 1;
 			height: auto;
-		}
-
-		.el-card__body {
-			padding: 0;
 			position: relative;
 
 			img {
 				width: 100%;
 				height: 100%;
+				overflow: hidden;
 			}
 
-			.el-card-text {
-				position: absolute;
-				bottom: 0;
-				padding: 20px;
-				background-color: #ffffffc2;
+			.images {
+				width: 100%;
+				height: 100%;
+				display: inline-block;
+			}
+		}
 
-				h3 {
-					font-weight: 500;
-					margin-bottom: 15px;
-					color: #4d90ae;
-					border-bottom: 2px solid #4d90ae;
-				}
-
-				h5 {
-					color: #878787;
-					margin-bottom: 22px;
-					text-align: right;
-					position: absolute;
-				}
-
-				p {
-					font-size: 13px;
-				}
+		.Playlist_text {
+			flex: 2;
+			margin-left: 30px;
+			h3 {
+				font-size: 4em;
+				margin: 10px 0;
+				font-weight: 800;
+			}
+			p {
+				font-size: 14px;
+				line-height: 2em;
+				width: 70%;
+			}
+			button {
+				background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				margin-top: 10px;
+				color: $white;
+			}
+			button:hover {
+				background-image: linear-gradient(to right, #333 0%, #999 100%);
+				border: 1px solid #fff;
+				color: $white;
 			}
 		}
 	}
-
-	ul {
-		width: 100%;
-		margin: 20px 0;
-
-		li {
-			display: flex;
-			align-items: center;
-			.Playlist_images {
-				flex: 1;
-				height: auto;
-				position: relative;
-
-				img {
-					width: 100%;
-					height: 100%;
-					overflow: hidden;
-				}
-
-				.images {
-					width: 100%;
-					height: 100%;
-					display: inline-block;
-				}
-			}
-
-			.Playlist_text {
-				flex: 2;
-				margin-left: 30px;
-				h3 {
-					font-size: 2em;
-					margin: 10px 0;
-					font-weight: 800;
-				}
-				p {
-					font-size: 14px;
-					line-height: 2em;
-					width: 70%;
-				}
-				button {
-					background-image: linear-gradient(to right, #434343 0%, black 100%);
-					margin-top: 10px;
-					color: #eff3f5;
-				}
-				button:hover {
-					background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%),
-						radial-gradient(at top center, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0.4) 120%) #989898;
-					background-blend-mode: multiply, multiply;
-					border: 1px solid #fff;
-					color: #eff3f5;
-				}
-			}
+}
+ul:nth-child(even) {
+	li {
+		.Playlist_images {
+			order: 2;
+		}
+		.Playlist_text {
+			order: 1;
 		}
 	}
-	ul:nth-child(even) {
-		li {
-			.Playlist_images {
-				order: 2;
+}
+
+// 歌單
+ul.Playlist {
+	width: 80%;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid $MainColor;
+	li {
+		text-align: center;
+		flex: 1;
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+	li:nth-child(2),
+	li:nth-child(1) {
+		flex: 2;
+	}
+
+	li:nth-child(2) {
+		text-align: left;
+		margin-left: 20px;
+	}
+}
+
+// 頁碼
+.block {
+	position: relative;
+	left: -50px;
+	bottom: -50px;
+	margin: 30px;
+	text-align: center;
+	width: calc(100vw - 15px);
+
+	.el-pagination {
+		button {
+			display: inline-block;
+			vertical-align: middle;
+			background-color: transparent;
+		}
+
+		ul.el-pager {
+			vertical-align: middle;
+			width: auto;
+			display: inline-block;
+			li {
+				vertical-align: middle;
+				display: inline-block;
+				background: transparent;
 			}
-			.Playlist_text {
-				order: 1;
+			.number.active,
+			.number:hover {
+				color: $MainColor;
 			}
 		}
 	}

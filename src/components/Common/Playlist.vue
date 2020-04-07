@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<div>
-			<ul v-for="item in Playlist[CurrentPage]" :key="item.AlbumId">
-				<li>
+			<ul v-for="item in Playlist[CurrentPage]" :key="item.AlbumId" class="Playlist">
+				<li class="Playlist_images">
 					<img @click="getAlbum(item.id)" :src="item.Image" />
 				</li>
 				<li>{{ item.name }}</li>

@@ -27,9 +27,6 @@
 import Vue from 'vue';
 import { State, Action, Getter, namespace } from 'vuex-class';
 import { Component } from 'vue-property-decorator';
-// import PopularList from '@/view/PopularList.vue';
-// import MainList from '@/view/MainList.vue';
-// import User from '@/view/User.vue';
 import Api from '@/api/common';
 import * as Model from '@/models/interfaces/common';
 import EventBus from '@/utilities/event-bus';
@@ -40,13 +37,6 @@ const tokenModule = namespace('Token');
 // 將物件與URL互相轉換格式的方法
 const qs = require('qs');
 
-@Component({
-	components: {
-		// PopularList,
-		// MainList,
-		// User,
-	},
-})
 export default class App extends Vue {
 	// 映射 state 到變數 Token
 	@tokenModule.State('publicToken') Token!: string;
