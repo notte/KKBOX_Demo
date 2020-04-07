@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<!-- 主題歌單 - 主題列表 -->
 		<el-row>
 			<el-col :span="7">
 				<el-card
@@ -18,6 +19,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
+import * as Model from '@/models/interfaces/mainPlaylists';
 
 @Component
 export default class MaiinListCategories extends Vue {}

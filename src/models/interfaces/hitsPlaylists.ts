@@ -41,3 +41,4 @@ export interface IImag {
 	width: number;
 	url: string;
 }
+

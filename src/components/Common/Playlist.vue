@@ -1,21 +1,19 @@
 <template>
 	<div>
-		<div>
-			<ul v-for="item in Playlist[CurrentPage]" :key="item.AlbumId" class="Playlist">
-				<li class="Playlist_images">
-					<img @click="getAlbum(item.id)" :src="item.Image" />
-				</li>
-				<li>{{ item.name }}</li>
-				<li>{{ item.date }}</li>
-				<li @click="getArtist(item.artistID)">{{ item.artist }}</li>
-			</ul>
-			<div class="block">
-				<el-pagination
-					layout="prev, pager, next"
-					@current-change="handleCurrentChange"
-					:page-count="TotalPage"
-				></el-pagination>
-			</div>
+		<ul v-for="item in Playlist[CurrentPage]" :key="item.AlbumId" class="Playlist">
+			<li class="Playlist_images">
+				<img @click="getAlbum(item.id)" :src="item.Image" />
+			</li>
+			<li>{{ item.name }}</li>
+			<li>{{ item.date }}</li>
+			<li @click="getArtist(item.artistID)">{{ item.artist }}</li>
+		</ul>
+		<div class="block">
+			<el-pagination
+				layout="prev, pager, next"
+				@current-change="handleCurrentChange"
+				:page-count="TotalPage"
+			></el-pagination>
 		</div>
 	</div>
 </template>
@@ -41,6 +39,8 @@ export default class Playlist extends Vue {
 	// 取得當前頁碼
 	handleCurrentChange(val: number) {
 		// 實際選中陣列 = 當前頁碼 - 1
+		// window.scrollTo(0, 0);
+		// document.body.scrollTop = 0;
 		this.CurrentPage = val - 1;
 	}
 

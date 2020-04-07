@@ -12,4 +12,12 @@ export default {
 		const result = await Handler.request(config);
 		return <Model.IGetNewHitsPlaylistsReponse>result.data;
 	},
+	async getMaiinListCategories(): Promise<Model.IGetNewHitsPlaylistsReponse> {
+		const config = {
+			method: 'get',
+			url: `/featured-playlist-categories?territory=TW`,
+		};
+		const result = await Handler.request(config);
+		return <Model.IGetNewHitsPlaylistsReponse>result.data;
+	},
 };
