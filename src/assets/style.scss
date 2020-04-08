@@ -208,5 +208,12 @@ ul.Playlist {
 				color: $MainColor;
 			}
 		}
+
+		.el-pager:hover li.el-icon.more,
+		.btn-prev:hover,
+		.btn-next:hover {
+			color: $MainColor;
+			;
+		}
 	}
 }
