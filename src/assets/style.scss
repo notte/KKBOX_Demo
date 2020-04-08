@@ -1,11 +1,13 @@
 $white: #eff3f5;
 $MainColor: #5a0ed4;
+
 body {
 	font-size: 1em;
 	color: #434343;
 	overflow: hidden;
 	margin: 0;
 	font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+
 	* {
 		padding: 0;
 		margin: 0;
@@ -44,6 +46,7 @@ a {
 		.el-menu {
 			background-color: transparent;
 			border: none;
+
 			.el-menu-item {
 				color: #333;
 				display: inline-block;
@@ -53,6 +56,7 @@ a {
 					background-color: transparent;
 				}
 			}
+
 			.el-menu-item.is-active {
 				color: $MainColor;
 			}
@@ -70,7 +74,7 @@ a {
 		.container {
 			overflow-y: scroll;
 			flex: 1 1 0;
-			padding: 50px;
+			padding: 50px 0;
 		}
 	}
 }
@@ -84,6 +88,7 @@ ul.PopularList {
 	li {
 		display: flex;
 		align-items: center;
+
 		.Playlist_images {
 			flex: 1;
 			height: auto;
@@ -105,21 +110,25 @@ ul.PopularList {
 		.Playlist_text {
 			flex: 2;
 			margin-left: 30px;
+
 			h3 {
 				font-size: 4em;
 				margin: 10px 0;
 				font-weight: 800;
 			}
+
 			p {
 				font-size: 14px;
 				line-height: 2em;
 				width: 70%;
 			}
+
 			button {
 				background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 				margin-top: 10px;
 				color: $white;
 			}
+
 			button:hover {
 				background-image: linear-gradient(to right, #333 0%, #999 100%);
 				border: 1px solid #fff;
@@ -128,11 +137,13 @@ ul.PopularList {
 		}
 	}
 }
+
 ul:nth-child(even) {
 	li {
 		.Playlist_images {
 			order: 2;
 		}
+
 		.Playlist_text {
 			order: 1;
 		}
@@ -146,14 +157,17 @@ ul.Playlist {
 	display: flex;
 	align-items: center;
 	border-bottom: 1px solid $MainColor;
+
 	li {
 		text-align: center;
 		flex: 1;
+
 		img {
 			width: 100%;
 			height: auto;
 		}
 	}
+
 	li:nth-child(2),
 	li:nth-child(1) {
 		flex: 2;
@@ -167,10 +181,7 @@ ul.Playlist {
 
 // 頁碼
 .block {
-	position: relative;
-	left: -50px;
-	bottom: -50px;
-	margin: 30px;
+	margin-top: 50px;
 	text-align: center;
 	width: calc(100vw - 15px);
 
@@ -185,11 +196,13 @@ ul.Playlist {
 			vertical-align: middle;
 			width: auto;
 			display: inline-block;
+
 			li {
 				vertical-align: middle;
 				display: inline-block;
 				background: transparent;
 			}
+
 			.number.active,
 			.number:hover {
 				color: $MainColor;

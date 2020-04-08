@@ -40,15 +40,15 @@ const qs = require('qs');
 export default class App extends Vue {
 	// 映射 state 到變數 Token
 	@tokenModule.State('publicToken') Token!: string;
-	getTokenrequest = {} as Model.IgetTokenRequest;
+	GetTokenRequest = {} as Model.IgetTokenRequest;
 
 	// private表示為私人的
 	@Action('Token/setPublicToken') private setPublicToken!: any;
 	created() {
-		this.getTokenrequest.grant_type = 'client_credentials';
-		this.getTokenrequest.client_id = '56becb08dfb467fb1d42b8d499b03012';
-		this.getTokenrequest.client_secret = '05cd3ab201d7ca9ccad105e099a668e7';
-		Api.getToken(qs.stringify(this.getTokenrequest)).then(res => {
+		this.GetTokenRequest.grant_type = 'client_credentials';
+		this.GetTokenRequest.client_id = '56becb08dfb467fb1d42b8d499b03012';
+		this.GetTokenRequest.client_secret = '05cd3ab201d7ca9ccad105e099a668e7';
+		Api.getToken(qs.stringify(this.GetTokenRequest)).then(res => {
 			this.setPublicToken(res.access_token);
 			localStorage.setItem('accessToken', res.access_token);
 		});

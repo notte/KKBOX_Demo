@@ -1,9 +1,9 @@
 <template>
 	<div class="PopularList">
 		<PopularListMain v-if="isShow('PopularList')" />
-		<Playlist v-if="isShow('Playlist')" :PlaylistID="id" />
-		<Album v-if="isShow('Album')" :AlbumID="id" />
-		<Artist v-if="isShow('Artist')" :ArtistID="id" />
+		<Playlist v-if="isShow('Playlist')" :PlaylistID="Id" />
+		<Album v-if="isShow('Album')" :AlbumID="Id" />
+		<Artist v-if="isShow('Artist')" :ArtistID="Id" />
 	</div>
 </template>
 
@@ -26,26 +26,26 @@ import EventBus from '@/utilities/event-bus';
 	},
 })
 export default class PopularList extends Vue {
-	currentType: string = PopularType.PopularList;
+	CurrentType: string = PopularType.PopularList;
 	PopularList: PopularType = PopularType.PopularList;
 	Playlist: PopularType = PopularType.Playlist;
 	Album: PopularType = PopularType.Album;
 	Artist: PopularType = PopularType.Artist;
-	id: string = '';
+	Id: string = '';
 
 	// 判斷當前要顯示哪個組件
 	isShow(tab: PopularType): boolean {
-		return this.currentType === tab ? true : false;
+		return this.CurrentType === tab ? true : false;
 	}
 
 	mounted() {
 		// 接收 get-playlist 事件，點擊歌單
 		EventBus.$on('get-info', (param: any) => {
-			this.id = param.id;
+			this.Id = param.id;
 			// router跳轉
 			this.$router.push({ name: param.tab }).catch(err => {});
 			// 切換顯示 component
-			this.currentType = param.tab;
+			this.CurrentType = param.tab;
 		});
 	}
 }

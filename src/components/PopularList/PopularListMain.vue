@@ -1,7 +1,7 @@
 <template>
 	<!-- 熱門歌單類別列表 -->
 	<div>
-		<ul v-for="item in hitsPlaylists" :key="item.id" class="PopularList">
+		<ul v-for="item in HitsPlaylists" :key="item.id" class="PopularList">
 			<li>
 				<div class="Playlist_images">
 					<img :src="item.images[2].url" alt />
@@ -32,12 +32,12 @@ import * as Status from '@/models/status/type';
 @Component
 export default class PopularListMain extends Vue {
 	// hitsPlaylists = {} as Model.IGetNewHitsPlaylistsReponse;
-	hitsPlaylists: Model.IData[] = [];
+	HitsPlaylists: Model.IData[] = [];
 
 	created() {
 		Api.getNewHitsPlaylists()
 			.then(res => {
-				this.hitsPlaylists = res.data;
+				this.HitsPlaylists = res.data;
 			})
 			.catch(err => {
 				EventBus.SystemAlert(Status.SysMessageType.Error, Status.ErrorPopupContent.InternalServer);

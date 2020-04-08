@@ -78,6 +78,8 @@ export default class Playlist extends Vue {
 				this.Playlist = newData;
 			});
 
+			console.log(this.Playlist);
+
 			this.TotalPage = this.Playlist.length;
 		});
 	}

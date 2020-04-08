@@ -16,5 +16,11 @@ export const getInfo = (id: string, tab: Status.PopularType) => {
 	EventBus.$emit('get-info', { id, tab });
 };
 
+// 傳遞主題歌單
+export const getMain = (id: string, tab: Status.MainType) => {
+	// 發送事件
+	EventBus.$emit('get-info', { id, tab });
+};
+
 const EventBus = new Vue();
 export default EventBus;
