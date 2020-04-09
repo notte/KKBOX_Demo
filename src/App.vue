@@ -9,9 +9,6 @@
 					<router-link to="/MainList">
 						<el-menu-item index="2">主題歌單</el-menu-item>
 					</router-link>
-					<router-link to="/Profile">
-						<el-menu-item index="3">個人歌單</el-menu-item>
-					</router-link>
 				</el-menu>
 			</header>
 			<el-main>

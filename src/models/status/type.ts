@@ -26,11 +26,6 @@ export enum MainType {
 	Artist = 'MainArtist',
 }
 
-// 紀錄當前授權使用者顯示內容
-export enum MeType {
-	Profile = 'Profile',
-}
-
 // 系統訊息回應類型
 export enum SysMessageType {
 	Information = 'Information',
