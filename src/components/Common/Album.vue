@@ -15,6 +15,7 @@ import Api from '@/api/common';
 @Component
 export default class Album extends Vue {
 	@Prop(String) readonly AlbumID!: string;
+	@Prop(Object) readonly PageType!: any;
 	// 專輯資料
 	Album: object = {};
 

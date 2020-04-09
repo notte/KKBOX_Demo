@@ -10,7 +10,7 @@
 				<div class="Playlist_text">
 					<h3>{{ item.title.substr(0, 6) }}</h3>
 					<p>{{ item.description }}</p>
-					<el-button :plain="true" :round="true" @click.native="getPlaylist(item.id)">進入歌單</el-button>
+					<a @click="getPlaylist(item.id)">進入歌單</a>
 				</div>
 			</li>
 		</ul>

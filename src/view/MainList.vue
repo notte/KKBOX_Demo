@@ -1,15 +1,10 @@
 <template>
 	<div>
-		<!-- <h1 @click="currentTab='MainList'">467</h1>
-		<h1 @click="currentTab='MainType'">1234</h1>
-		<h1 @click="currentTab='MainPlaylist'">235</h1>
-		<h1 @click="currentTab='MainAlbum'">23425</h1>
-		<h1 @click="currentTab='MainArtist'">78</h1>-->
 		<MainListCategories v-if="isShow('MainList')" />
 		<MainCategoryList :CategoryID="Id" v-if="isShow('MainType')" />
-		<!-- <Album v-if="isShow('MainPlaylist')" /> -->
-		<!-- <Artist v-if="isShow('MainAlbum')" /> -->
-		<!-- <Playlist v-if="isShow('MainArtist')" /> -->
+		<Playlist :PlaylistID="Id" :PageType="Type" v-if="isShow('MainPlaylist')" />
+		<Album v-if="isShow('MainAlbum')" :AlbumID="Id" />
+		<Artist v-if="isShow('MainArtist')" :ArtistID="Id" />
 	</div>
 </template>
 
@@ -21,7 +16,7 @@ import MainCategoryList from '@/components/MainList/MainCategoryList.vue';
 import Album from '@/components/Common/Album.vue';
 import Artist from '@/components/Common/Artist.vue';
 import Playlist from '@/components/Common/Playlist.vue';
-import { MainType } from '@/models/status/type';
+import * as Status from '@/models/status/type';
 import EventBus from '@/utilities/event-bus';
 
 @Component({
@@ -35,21 +30,22 @@ import EventBus from '@/utilities/event-bus';
 })
 export default class MainList extends Vue {
 	// 當前開啟類別
-	CurrentType: string = MainType.MainList!;
+	CurrentType: string = Status.MainType.MainList!;
 	// 主題類別
-	MainList: MainType = MainType.MainList;
+	MainList: Status.MainType = Status.MainType.MainList;
 	// 類別下所有歌單列表
-	MainType: MainType = MainType.MainType;
+	MainType: Status.MainType = Status.MainType.MainType;
 	// 歌單
-	Playlist: MainType = MainType.Playlist;
+	Playlist: Status.MainType = Status.MainType.Playlist;
 	// 專輯
-	Album: MainType = MainType.Album;
+	Album: Status.MainType = Status.MainType.Album;
 	// 歌手
-	Artist: MainType = MainType.Artist;
+	Artist: Status.MainType = Status.MainType.Artist;
 	Id: string = '';
+	Type: object = {};
 
-	isShow(tab: MainType): boolean {
-		this.$router.push({ name: this.CurrentType }).catch(err => {});
+	isShow(tab: Status.MainType): boolean {
+		// this.$router.push({ name: this.CurrentType }).catch(err => {});
 		return this.CurrentType === tab ? true : false;
 	}
 
@@ -61,6 +57,7 @@ export default class MainList extends Vue {
 			this.$router.push({ name: param.tab }).catch(err => {});
 			// 切換顯示 component
 			this.CurrentType = param.tab;
+			this.Type = { id: param.id, type: Status.PlaylistType.MainList };
 		});
 	}
 }

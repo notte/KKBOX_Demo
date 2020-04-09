@@ -2,6 +2,8 @@ $white: #eff3f5;
 $MainColor: #5a0ed4;
 
 body {
+	letter-spacing: 1px;
+	box-sizing: border-box;
 	font-size: 1em;
 	color: #434343;
 	overflow: hidden;
@@ -123,16 +125,18 @@ ul.PopularList {
 				width: 70%;
 			}
 
-			button {
+			a {
+				display: inline-block;
+				clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
 				background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-				margin-top: 10px;
 				color: $white;
+				margin-top: 10px;
+				padding: 10px 30px;
+
 			}
 
-			button:hover {
-				background-image: linear-gradient(to right, #333 0%, #999 100%);
-				border: 1px solid #fff;
-				color: $white;
+			a:hover {
+				background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 			}
 		}
 	}
@@ -177,6 +181,65 @@ ul.Playlist {
 		text-align: left;
 		margin-left: 20px;
 	}
+}
+
+// 主題歌單
+ul.MainCategoryList {
+	vertical-align: top;
+	width: 50%;
+	display: inline-block;
+	border-radius: 10px;
+
+	li {
+		margin-bottom: -3px;
+
+		.Playlist_images {
+			width: 100%;
+			overflow: hidden;
+			position: relative;
+
+			img {
+				width: 100%;
+				height: auto;
+			}
+
+			a {
+				clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+				position: absolute;
+				bottom: 30px;
+				left: 30px;
+				background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: $white;
+				padding: 10px 30px;
+
+			}
+
+			a:hover {
+				background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+			}
+
+		}
+
+		.Playlist_text {
+			padding: 30px;
+
+			h3 {
+				font-size: 2em;
+				font-weight: 900;
+				margin-bottom: 10px;
+			}
+
+			p {
+				text-align: left;
+				font-size: 12px;
+				margin-bottom: 10px;
+				line-height: 2em;
+			}
+		}
+
+	}
+
+
 }
 
 // 頁碼

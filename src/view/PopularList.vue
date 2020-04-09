@@ -1,7 +1,7 @@
 <template>
 	<div class="PopularList">
 		<PopularListMain v-if="isShow('PopularList')" />
-		<Playlist v-if="isShow('Playlist')" :PlaylistID="Id" />
+		<Playlist v-if="isShow('Playlist')" :PlaylistID="Id" :PageType="Type" />
 		<Album v-if="isShow('Album')" :AlbumID="Id" />
 		<Artist v-if="isShow('Artist')" :ArtistID="Id" />
 	</div>
@@ -14,7 +14,7 @@ import PopularListMain from '@/components/PopularList/PopularListMain.vue';
 import Playlist from '@/components/Common/Playlist.vue';
 import Album from '@/components/Common/Album.vue';
 import Artist from '@/components/Common/Artist.vue';
-import { PopularType } from '@/models/status/type';
+import * as Status from '@/models/status/type';
 import EventBus from '@/utilities/event-bus';
 
 @Component({
@@ -26,15 +26,16 @@ import EventBus from '@/utilities/event-bus';
 	},
 })
 export default class PopularList extends Vue {
-	CurrentType: string = PopularType.PopularList;
-	PopularList: PopularType = PopularType.PopularList;
-	Playlist: PopularType = PopularType.Playlist;
-	Album: PopularType = PopularType.Album;
-	Artist: PopularType = PopularType.Artist;
+	CurrentType: string = Status.PopularType.PopularList;
+	PopularList: Status.PopularType = Status.PopularType.PopularList;
+	Playlist: Status.PopularType = Status.PopularType.Playlist;
+	Album: Status.PopularType = Status.PopularType.Album;
+	Artist: Status.PopularType = Status.PopularType.Artist;
 	Id: string = '';
+	Type: object = {};
 
 	// 判斷當前要顯示哪個組件
-	isShow(tab: PopularType): boolean {
+	isShow(tab: Status.PopularType): boolean {
 		return this.CurrentType === tab ? true : false;
 	}
 
@@ -46,6 +47,7 @@ export default class PopularList extends Vue {
 			this.$router.push({ name: param.tab }).catch(err => {});
 			// 切換顯示 component
 			this.CurrentType = param.tab;
+			this.Type = { id: param.id, type: Status.PlaylistType.Popular };
 		});
 	}
 }

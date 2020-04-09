@@ -29,32 +29,47 @@ import * as Status from '@/models/status/type';
 @Component
 export default class Playlist extends Vue {
 	@Prop(String) readonly PlaylistID!: string;
+	@Prop(Object) readonly PageType!: any;
 	// 所有歌單資料
 	Playlist: object[] = [];
 	// 總頁數，重新整理後的陣列長度
 	TotalPage: number = 0;
 	// 目前選中的頁碼
 	CurrentPage: number = 0;
+	// API URL
+	ApiUrl: string = '';
 
 	// 取得當前頁碼
 	handleCurrentChange(val: number) {
 		// 實際選中陣列 = 當前頁碼 - 1
-		// window.scrollTo(0, 0);
-		// document.body.scrollTop = 0;
 		this.CurrentPage = val - 1;
 	}
 
 	// 取得專輯
 	getAlbum(id: string) {
-		EventBus.getInfo(id, Status.PopularType.Album);
+		if (this.PageType.type === Status.PlaylistType.Popular) {
+			EventBus.getInfo(id, Status.PopularType.Album);
+		} else if (this.PageType.type === Status.PlaylistType.MainList) {
+			EventBus.getMain(id, Status.MainType.Album);
+		}
 	}
 	// 取得歌手
 	getArtist(id: string) {
-		EventBus.getInfo(id, Status.PopularType.Artist);
+		if (this.PageType.type === Status.PlaylistType.Popular) {
+			EventBus.getInfo(id, Status.PopularType.Artist);
+		} else if (this.PageType.type === Status.PlaylistType.MainList) {
+			EventBus.getMain(id, Status.MainType.Artist);
+		}
 	}
 
 	created() {
-		Api.getPlaylist(this.PlaylistID).then(res => {
+		if (this.PageType.type === Status.PlaylistType.Popular) {
+			this.ApiUrl = 'new-hits-playlists/' + this.PageType.id;
+		} else if (this.PageType.type === Status.PlaylistType.MainList) {
+			this.ApiUrl = 'featured-playlists/' + this.PageType.id;
+		}
+
+		Api.getPlaylist(this.ApiUrl).then(res => {
 			for (const item of res.tracks.data) {
 				const { name } = item;
 				const { id, release_date, artist } = item.album;
@@ -78,11 +93,8 @@ export default class Playlist extends Vue {
 				this.Playlist = newData;
 			});
 
-			console.log(this.Playlist);
-
 			this.TotalPage = this.Playlist.length;
 		});
 	}
-	mounted() {}
 }
 </script>

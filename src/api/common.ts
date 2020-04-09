@@ -27,10 +27,10 @@ export default {
 		return <Model.ISearchReponse>result.data;
 	},
 	// 取得歌單
-	async getPlaylist(id: string): Promise<Model.IgetPlaylistReponse> {
+	async getPlaylist(url: string): Promise<Model.IgetPlaylistReponse> {
 		const config = {
 			method: 'get',
-			url: `/api/new-hits-playlists/${id}?territory=TW`,
+			url: `/api/${url}?territory=TW`,
 		};
 		const result = await Handler.request(config);
 		return <Model.IgetPlaylistReponse>result.data;

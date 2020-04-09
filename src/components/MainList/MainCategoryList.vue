@@ -4,13 +4,14 @@
 			<!-- PopularList -->
 			<li>
 				<div class="Playlist_images">
-					<img :src="item.Images" alt />
-					<div class="images"></div>
+					<div class="images">
+						<img :src="item.Images" alt />
+					</div>
+					<a size="medium" @click="getPlaylist(item.id)">進入歌單</a>
 				</div>
 				<div class="Playlist_text">
 					<h3>{{ item.title }}</h3>
 					<p>{{ item.description.substr(0, 100) }}</p>
-					<el-button :plain="true" :round="true" @click.native="getPlaylist(item.id)">進入歌單</el-button>
 				</div>
 			</li>
 		</ul>
@@ -70,9 +71,11 @@ export default class MaiinCategoryList extends Vue {
 	}
 	handleCurrentChange(val: number) {
 		// 實際選中陣列 = 當前頁碼 - 1
-		// window.scrollTo(0, 0);
-		// document.body.scrollTop = 0;
 		this.CurrentPage = val - 1;
+	}
+	getPlaylist(id: string): void {
+		// 發送事件，帶入對應的id以及開啟類型
+		EventBus.getMain(id, Status.MainType.Playlist);
 	}
 }
 </script>

@@ -46,3 +46,10 @@ export enum ErrorPopupContent {
 	InternalServer = 'Error.__internal_server',
 	IncorrectInputData = 'Error.__Incorrect_Input_Data',
 }
+
+// 歌單類型
+
+export enum PlaylistType {
+	Popular = 'Popular',
+	MainList = 'MainList',
+}

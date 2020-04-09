@@ -29,11 +29,6 @@ const routes = [
 			{ path: 'Artist', name: 'MainArtist' },
 		],
 	},
-	{
-		path: '/Profile',
-		name: 'Profile',
-		component: () => import('@/view/User.vue'),
-	},
 ];
 
 const router = new VueRouter({
