@@ -1,7 +1,7 @@
 <template>
-	<div>
+	<div class="Artist">
 		<img :src="Artist.images" />
-		<h1 class="artist-name">{{Artist.name}}</h1>
+		<h1 class="Artist_name">{{Artist.name}}</h1>
 		<el-divider>發行專輯</el-divider>
 		<el-row>
 			<el-col :span="4" v-for="item in ArtistTrack" :key="item.id">
@@ -34,6 +34,7 @@ export default class Artist extends Vue {
 	created() {
 		Api.getArtist(this.ArtistID).then(res => {
 			this.ArtistTrack = res.data;
+			this.ArtistTrack.reverse();
 			this.Artist = this.ArtistTrack[0].artist;
 			const { id, name, images } = this.Artist;
 			this.Artist = {};

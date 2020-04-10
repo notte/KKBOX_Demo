@@ -1,14 +1,12 @@
 <template>
 	<div>
 		<!-- 主題歌單 - 主題列表 -->
-		<el-row class="MainListCategories">
-			<el-col :span="7" v-for="item in MainList" :key="item.id">
+		<div class="MainListCategories">
+			<div v-for="item in MainList" :key="item.id">
 				<img :src="item.images[1].url" @click="getCategory(item.id)" />
-				<div class="el-card-text">
-					<h1>{{item.title}}</h1>
-				</div>
-			</el-col>
-		</el-row>
+				<h1>{{item.title}}</h1>
+			</div>
+		</div>
 	</div>
 </template>
 

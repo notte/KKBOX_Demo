@@ -1,5 +1,5 @@
 $white: #eff3f5;
-$MainColor: #5a0ed4;
+$MainColor: #7029b6;
 
 body {
 	letter-spacing: 1px;
@@ -17,9 +17,11 @@ body {
 		text-decoration: none;
 		list-style: none;
 	}
-}
 
-// 捲軸樣式
+	a {
+		cursor: pointer;
+	}
+}
 
 body,
 #app {
@@ -117,6 +119,8 @@ ul.PopularList {
 				font-size: 4em;
 				margin: 10px 0;
 				font-weight: 800;
+				color: $MainColor;
+				border-bottom: 5px solid $MainColor;
 			}
 
 			p {
@@ -127,8 +131,10 @@ ul.PopularList {
 
 			a {
 				display: inline-block;
-				clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+				// border-radius: 30px;
+				clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
 				background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				background-color: $MainColor;
 				color: $white;
 				margin-top: 10px;
 				padding: 10px 30px;
@@ -136,7 +142,7 @@ ul.PopularList {
 			}
 
 			a:hover {
-				background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+				background-image: linear-gradient(135deg, #6536a3 0%, #38214d 100%);
 			}
 		}
 	}
@@ -169,6 +175,7 @@ ul.Playlist {
 		img {
 			width: 100%;
 			height: auto;
+			cursor: pointer;
 		}
 	}
 
@@ -181,9 +188,42 @@ ul.Playlist {
 		text-align: left;
 		margin-left: 20px;
 	}
+
+	li:nth-child(4) {
+		cursor: pointer;
+	}
 }
 
-// 主題歌單
+// 主題歌單 - 類別
+
+div.MainListCategories {
+
+	div {
+		display: inline-block;
+		width: calc(25% - 2px);
+		position: relative;
+		overflow: hidden;
+		margin: 0 1px;
+		margin-bottom: -4px;
+		cursor: pointer;
+
+		img {
+			width: 100%;
+		}
+
+		h1 {
+			text-shadow: 0 0 5px #000;
+			font-weight: 500;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: #fff;
+		}
+	}
+}
+
+// 主題歌單 - 類別下歌單列表
 ul.MainCategoryList {
 	vertical-align: top;
 	width: 50%;
@@ -277,6 +317,101 @@ ul.MainCategoryList {
 		.btn-next:hover {
 			color: $MainColor;
 			;
+		}
+	}
+}
+
+// 專輯
+.Album {
+	margin: 0 50px;
+	text-align: center;
+
+	img {
+		width: 30%;
+		height: auto;
+	}
+
+	h1 {
+		color: $MainColor;
+		font-weight: 700;
+		font-size: 2em;
+		margin: 15px 0;
+	}
+
+	span {
+		display: inline-block;
+		margin-bottom: 15px;
+		font-size: 12px;
+	}
+
+	p {
+		cursor: pointer;
+		font-size: 1em;
+		margin-bottom: 50px;
+		font-weight: 500;
+	}
+
+	ul {
+		width: 60%;
+		display: flex;
+		margin: 0 auto;
+		padding: 15px;
+		border-bottom: 1px solid #dcdfe6;
+
+		li {
+			flex: 1;
+			font-size: 12px;
+		}
+
+		li:nth-child(2) {
+			flex: 2;
+		}
+	}
+}
+
+// 歌手
+
+.Artist {
+	margin: 0 50px;
+	text-align: center;
+
+	.Artist_name {
+		color: $MainColor;
+		font-size: 1em;
+		font-weight: 700;
+		margin: 15px 0 30px 0;
+	}
+
+	.el-col {
+		margin: 10px 30px;
+
+		.el-card {
+			height: 300px;
+
+			.el-card__body {
+				padding: 0;
+
+				img {
+					width: 100%;
+					height: auto;
+				}
+			}
+
+			.el-card-text {
+				padding: 15px 15px 18px 15px;
+				margin-bottom: -5px;
+
+				h1 {
+					font-size: 1em;
+					color: $MainColor;
+				}
+
+				span {
+					font-size: 12px;
+					display: inline-block;
+					margin-top: 10px;
+				}
+			}
 		}
 	}
 }
