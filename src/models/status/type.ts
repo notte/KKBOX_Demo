@@ -28,17 +28,25 @@ export enum MainType {
 
 // 系統訊息回應類型
 export enum SysMessageType {
+	// 資訊
 	Information = 'Information',
+	// 警告
 	Warning = 'Warning',
+	// 錯誤
 	Error = 'Error',
+	// 完美
 	Success = 'Success',
+	// 確認
 	Confirmation = 'Confirmation',
+	// 確認&取消
 	ConfirmationWithCancel = 'ConfirmationWithCancel',
 }
 
 // 錯誤訊息類型
 export enum ErrorPopupContent {
+	// 網路錯誤
 	InternalServer = 'Error.__internal_server',
+	// 輸入錯誤
 	IncorrectInputData = 'Error.__Incorrect_Input_Data',
 }
 

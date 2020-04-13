@@ -23,7 +23,6 @@ import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 import Api from '@/api/common';
 import * as EventBus from '@/utilities/event-bus';
-import * as Model from '@/models/interfaces/common';
 import * as Status from '@/models/status/type';
 
 @Component
@@ -69,32 +68,36 @@ export default class Playlist extends Vue {
 			this.ApiUrl = 'featured-playlists/' + this.PageType.id;
 		}
 
-		Api.getPlaylist(this.ApiUrl).then(res => {
-			for (const item of res.tracks.data) {
-				const { name } = item;
-				const { id, release_date, artist } = item.album;
-				this.Playlist.push({ id, Image: item.album.images[1].url, name, date: release_date, artist: artist.name, artistID: artist.id });
-			}
-
-			this.TotalPage = this.Playlist.length;
-
-			const newData: any = [];
-
-			// item 為陣列物件的每一個物件，i 為物件索引
-			this.Playlist.forEach((item, i) => {
-				// 每十筆資料就新增一個空陣列
-				if (i % 10 === 0) {
-					newData.push([]);
+		Api.getPlaylist(this.ApiUrl)
+			.then(res => {
+				for (const item of res.tracks.data) {
+					const { name } = item;
+					const { id, release_date, artist } = item.album;
+					this.Playlist.push({ id, Image: item.album.images[1].url, name, date: release_date, artist: artist.name, artistID: artist.id });
 				}
 
-				// 將當前的 i/10 取整數，表示每十筆換一頁，因此為 0/10/20/30...
-				const page = Math.floor(i / 10);
-				newData[page].push(item);
-				this.Playlist = newData;
-			});
+				this.TotalPage = this.Playlist.length;
 
-			this.TotalPage = this.Playlist.length;
-		});
+				const newData: any = [];
+
+				// item 為陣列物件的每一個物件，i 為物件索引
+				this.Playlist.forEach((item, i) => {
+					// 每十筆資料就新增一個空陣列
+					if (i % 10 === 0) {
+						newData.push([]);
+					}
+
+					// 將當前的 i/10 取整數，表示每十筆換一頁，因此為 0/10/20/30...
+					const page = Math.floor(i / 10);
+					newData[page].push(item);
+					this.Playlist = newData;
+				});
+
+				this.TotalPage = this.Playlist.length;
+			})
+			.catch(err => {
+				EventBus.SystemAlert(Status.SysMessageType.Error, Status.ErrorPopupContent.InternalServer);
+			});
 	}
 }
 </script>

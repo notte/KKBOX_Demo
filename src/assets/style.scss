@@ -383,13 +383,15 @@ ul.MainCategoryList {
 	}
 
 	.el-col {
-		margin: 10px 30px;
+		margin: 10px 0;
 
 		.el-card {
 			height: 300px;
+			overflow-y: auto;
 
 			.el-card__body {
 				padding: 0;
+				cursor: pointer;
 
 				img {
 					width: 100%;

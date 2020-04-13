@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
+import { SystemAlert } from '@/utilities/event-bus';
+import * as Status from '@/models/status/type';
 import { requestSuccess, requestFail, responseSuccess, responseFail } from './error-handler';
 
 /*
@@ -19,6 +21,8 @@ class HttpAxios {
 			cfg.headers = {
 				Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
 			};
+		} else {
+			SystemAlert(Status.SysMessageType.Error, Status.ErrorPopupContent.InternalServer);
 		}
 		// 建立axios實體
 		const instance = axios.create();

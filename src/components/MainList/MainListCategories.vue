@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
+import { Component } from 'vue-property-decorator';
 import * as Model from '@/models/interfaces/mainPlaylists';
 import Api from '@/api/main-playlists-api';
 import * as EventBus from '@/utilities/event-bus';

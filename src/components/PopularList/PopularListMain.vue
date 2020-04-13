@@ -19,9 +19,10 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
+import { Component } from 'vue-property-decorator';
 import Api from '@/api/hits-playlists-api';
-import * as EventBus from '@/utilities/event-bus';
+// import EventBus from '@/utilities/event-bus';
+import EventBus, { SystemAlert, getInfo } from '@/utilities/event-bus';
 import * as Model from '@/models/interfaces/hitsPlaylists';
 import * as Status from '@/models/status/type';
 
@@ -40,12 +41,30 @@ export default class PopularListMain extends Vue {
 				this.HitsPlaylists = res.data;
 			})
 			.catch(err => {
-				EventBus.SystemAlert(Status.SysMessageType.Error, Status.ErrorPopupContent.InternalServer);
+				SystemAlert(Status.SysMessageType.Error, Status.ErrorPopupContent.InternalServer);
 			});
 	}
+	// beforeMount() {
+	// 	EventBus.$on('api-error', (err: any) => {
+	// 		// console.log(err);
+	// 		this.$message({
+	// 			showClose: true,
+	// 			message: err.error.message,
+	// 			type: 'error',
+	// 		});
+	// 	});
+	// 	EventBus.$on('system-alert', (err: any) => {
+	// 		// console.log(err);
+	// 		this.$message({
+	// 			showClose: true,
+	// 			message: err.error.message,
+	// 			type: 'error',
+	// 		});
+	// 	});
+	// }
 	getPlaylist(id: string): void {
 		// 發送事件，帶入對應的id以及開啟類型
-		EventBus.getInfo(id, Status.PopularType.Playlist);
+		getInfo(id, Status.PopularType.Playlist);
 	}
 }
 </script>

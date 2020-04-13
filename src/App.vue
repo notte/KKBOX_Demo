@@ -26,8 +26,8 @@ import { State, Action, Getter, namespace } from 'vuex-class';
 import { Component } from 'vue-property-decorator';
 import Api from '@/api/common';
 import * as Model from '@/models/interfaces/common';
-import EventBus from '@/utilities/event-bus';
-import { ErrorPopupContent, SysMessageType } from '@/models/status/type';
+import EventBus, { SystemAlert } from '@/utilities/event-bus';
+import * as Status from '@/models/status/type';
 
 // 取得 Token 命名空間
 const tokenModule = namespace('Token');
@@ -38,28 +38,42 @@ export default class App extends Vue {
 	// 映射 state 到變數 Token
 	@tokenModule.State('publicToken') Token!: string;
 	GetTokenRequest = {} as Model.IgetTokenRequest;
-
 	// private表示為私人的
 	@Action('Token/setPublicToken') private setPublicToken!: any;
+
 	created() {
-		this.GetTokenRequest.grant_type = 'client_credentials';
-		this.GetTokenRequest.client_id = '56becb08dfb467fb1d42b8d499b03012';
-		this.GetTokenRequest.client_secret = '05cd3ab201d7ca9ccad105e099a668e7';
-		Api.getToken(qs.stringify(this.GetTokenRequest)).then(res => {
-			this.setPublicToken(res.access_token);
-			localStorage.setItem('accessToken', res.access_token);
-		});
+		// this.GetTokenRequest.grant_type = 'client_credentials';
+		// this.GetTokenRequest.client_id = '56becb08dfb467fb1d42b8d499b03012';
+		// this.GetTokenRequest.client_secret = '05cd3ab201d7ca9ccad105e099a668e7';
+		// Api.getToken(qs.stringify(this.GetTokenRequest))
+		// 	.then(res => {
+		// 		this.setPublicToken(res.access_token);
+		// 		localStorage.setItem('accessToken', res.access_token);
+		// 	})
+		// 	.catch(err => {
+		// 		SystemAlert(Status.SysMessageType.Error, Status.ErrorPopupContent.InternalServer);
+		// 	});
 	}
-	mounted() {
+
+	beforeMount() {
 		// 接收 api-error 事件
 		EventBus.$on('api-error', (err: any) => {
-			// console.log(err.error.message);
 			this.$message({
 				showClose: true,
 				message: err.error.message,
 				type: 'error',
 			});
 		});
+		EventBus.$on('system-alert', (err: any) => {
+			// console.log(err);
+			this.$message({
+				showClose: true,
+				message: err.error.message,
+				type: 'error',
+			});
+		});
+	}
+	mounted() {
 		// this.getSearch.q = '周杰倫';
 		// this.getSearch.territory = 'TW';
 		// this.getSearch.type = 'track';

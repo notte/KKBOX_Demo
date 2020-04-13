@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Watch, Prop } from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
 import PopularListMain from '@/components/PopularList/PopularListMain.vue';
 import Playlist from '@/components/Common/Playlist.vue';
 import Album from '@/components/Common/Album.vue';

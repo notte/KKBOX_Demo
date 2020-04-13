@@ -45,7 +45,6 @@ export default class MainList extends Vue {
 	Type: object = {};
 
 	isShow(tab: Status.MainType): boolean {
-		// this.$router.push({ name: this.CurrentType }).catch(err => {});
 		return this.CurrentType === tab ? true : false;
 	}
 

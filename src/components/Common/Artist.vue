@@ -6,7 +6,7 @@
 		<el-row>
 			<el-col :span="4" v-for="item in ArtistTrack" :key="item.id">
 				<el-card shadow="hover">
-					<img :src="item.images[1].url" />
+					<img :src="item.images[1].url" @click="getAlbum(item.id)" />
 					<div class="el-card-text">
 						<h1>{{item.name}}</h1>
 						<span>{{item.release_date}}</span>
@@ -19,9 +19,11 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
+import { Component, Prop, Watch } from 'vue-property-decorator';
 import Api from '@/api/common';
 import * as Model from '@/models/interfaces/common';
+import * as EventBus from '@/utilities/event-bus';
+import * as Status from '@/models/status/type';
 
 @Component
 export default class Artist extends Vue {
@@ -32,14 +34,28 @@ export default class Artist extends Vue {
 	Artist: any = '';
 
 	created() {
-		Api.getArtist(this.ArtistID).then(res => {
-			this.ArtistTrack = res.data;
-			this.ArtistTrack.reverse();
-			this.Artist = this.ArtistTrack[0].artist;
-			const { id, name, images } = this.Artist;
-			this.Artist = {};
-			Object.assign(this.Artist, { id, name, images: images[1].url });
-		});
+		Api.getArtist(this.ArtistID)
+			.then(res => {
+				this.ArtistTrack = res.data;
+				this.ArtistTrack.reverse();
+				this.Artist = this.ArtistTrack[0].artist;
+				const { id, name, images } = this.Artist;
+				this.Artist = {};
+				Object.assign(this.Artist, { id, name, images: images[1].url });
+				// console.log(this.ArtistTrack);
+			})
+			.catch(err => {
+				EventBus.SystemAlert(Status.SysMessageType.Error, Status.ErrorPopupContent.InternalServer);
+			});
+	}
+
+	getAlbum(id: string) {
+		if (this.$route.path.indexOf('PopularList') !== -1) {
+			EventBus.getInfo(id, Status.PopularType.Album);
+		}
+		if (this.$route.path.indexOf('MainList') !== -1) {
+			EventBus.getMain(id, Status.MainType.Album);
+		}
 	}
 }
 </script>
