@@ -1,6 +1,5 @@
-import { IError } from '@/models/interfaces/error';
+import { IError, IErrorData } from '@/models/interfaces/error';
 import EventBus from '@/utilities/event-bus';
-import Vue from 'vue';
 
 //  請求成功，把config直接帶入
 const requestSuccess = (config: any) => {
@@ -9,7 +8,7 @@ const requestSuccess = (config: any) => {
 
 //  請求失敗，超時
 const requestFail = (error: any) => {
-	err.error.message = '[token null] request fail';
+	err.message = '[token null] request fail';
 	// 發送api-error事件，並帶入err物件
 	EventBus.$emit('api-error', err);
 	// 返回給Promise
@@ -29,17 +28,17 @@ const responseFail = (errorData: any) => {
 		// 有這兩個資料
 		if (traceId && error) {
 			// 直接把錯誤物件帶入
-			err = <IError>errorData.response.data;
+			err.message = errorData.response.data.error.message;
 		} else {
 			// 將errorData.response的錯誤狀態碼、訊息等分別宣告
 			const { status, data, statusText } = errorData.response;
 			// 賦值
-			err.error.code = status;
-			err.error.message = `${data} ${statusText}`;
+			err.code = status;
+			err.message = `${data} ${statusText}`;
 		}
 	} else {
 		// 如果都沒有，只帶入訊息
-		err.error.message = JSON.stringify(errorData);
+		err.message = JSON.stringify(errorData);
 	}
 	// 發送api-error事件，並帶入err物件
 	EventBus.$emit('api-error', err);
@@ -48,9 +47,9 @@ const responseFail = (errorData: any) => {
 };
 
 // 宣告err類別為IError，然後預設為空值
-let err: IError = {
-	traceId: '',
-	error: { code: '', message: '' },
+const err: IErrorData = {
+	code: '',
+	message: '',
 };
 
 export { requestSuccess, requestFail, responseSuccess, responseFail };

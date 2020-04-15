@@ -16,11 +16,7 @@
 			</li>
 		</ul>
 		<div class="block">
-			<el-pagination
-				layout="prev, pager, next"
-				@current-change="handleCurrentChange"
-				:page-count="TotalPage"
-			></el-pagination>
+			<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-count="TotalPage"></el-pagination>
 		</div>
 	</div>
 </template>
@@ -46,32 +42,25 @@ export default class MaiinCategoryList extends Vue {
 
 	// MainCategoryList = {} as Model.IPlaylist;
 	created() {
-		Api.getMainCategory(this.CategoryID)
-			.then(res => {
-				// this.MainCategoryList = res.playlists.data;
-				for (const item of res.playlists.data) {
-					const { id, title, description, images } = item;
-					this.MainCategory.push({ id, title, description, Images: images[2].url });
+		Api.getMainCategory(this.CategoryID).then(res => {
+			// this.MainCategoryList = res.playlists.data;
+			for (const item of res.playlists.data) {
+				const { id, title, description, images } = item;
+				this.MainCategory.push({ id, title, description, Images: images[2].url });
+			}
+
+			const newData: any = [];
+
+			this.MainCategory.forEach((item, i) => {
+				if (i % 10 === 0) {
+					newData.push([]);
 				}
-
-				const newData: any = [];
-
-				this.MainCategory.forEach((item, i) => {
-					if (i % 10 === 0) {
-						newData.push([]);
-					}
-					const page = Math.floor(i / 10);
-					newData[page].push(item);
-					this.MainCategory = newData;
-				});
-				this.TotalPage = this.MainCategory.length;
-			})
-			.catch(err => {
-				EventBus.SystemAlert(Status.SysMessageType.Error, Status.ErrorPopupContent.InternalServer);
+				const page = Math.floor(i / 10);
+				newData[page].push(item);
+				this.MainCategory = newData;
 			});
-		// .catch(err => {
-		// 	EventBus.SystemAlert(Status.SysMessageType.Error, Status.ErrorPopupContent.InternalServer);
-		// });
+			this.TotalPage = this.MainCategory.length;
+		});
 	}
 	handleCurrentChange(val: number) {
 		// 實際選中陣列 = 當前頁碼 - 1

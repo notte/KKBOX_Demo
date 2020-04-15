@@ -36,32 +36,10 @@ export default class PopularListMain extends Vue {
 	HitsPlaylists: Model.IData[] = [];
 
 	created() {
-		Api.getNewHitsPlaylists()
-			.then(res => {
-				this.HitsPlaylists = res.data;
-			})
-			.catch(err => {
-				SystemAlert(Status.SysMessageType.Error, Status.ErrorPopupContent.InternalServer);
-			});
+		Api.getNewHitsPlaylists().then(res => {
+			this.HitsPlaylists = res.data;
+		});
 	}
-	// beforeMount() {
-	// 	EventBus.$on('api-error', (err: any) => {
-	// 		// console.log(err);
-	// 		this.$message({
-	// 			showClose: true,
-	// 			message: err.error.message,
-	// 			type: 'error',
-	// 		});
-	// 	});
-	// 	EventBus.$on('system-alert', (err: any) => {
-	// 		// console.log(err);
-	// 		this.$message({
-	// 			showClose: true,
-	// 			message: err.error.message,
-	// 			type: 'error',
-	// 		});
-	// 	});
-	// }
 	getPlaylist(id: string): void {
 		// 發送事件，帶入對應的id以及開啟類型
 		getInfo(id, Status.PopularType.Playlist);

@@ -4,7 +4,7 @@
 		<div class="MainListCategories">
 			<div v-for="item in MainList" :key="item.id">
 				<img :src="item.images[1].url" @click="getCategory(item.id)" />
-				<h1>{{item.title}}</h1>
+				<h1>{{ item.title }}</h1>
 			</div>
 		</div>
 	</div>
@@ -27,9 +27,6 @@ export default class MaiinListCategories extends Vue {
 			this.MainList = res.data;
 			// console.log(this.MainList);
 		});
-		// .catch(err => {
-		// 	EventBus.SystemAlert(Status.SysMessageType.Error, Status.ErrorPopupContent.InternalServer);
-		// });
 	}
 	getCategory(id: string) {
 		// 發送事件，帶入對應的id以及開啟類型
