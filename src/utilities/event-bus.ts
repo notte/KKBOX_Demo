@@ -22,5 +22,12 @@ export const getMain = (id: string, tab: Status.MainType) => {
 	EventBus.$emit('get-info', { id, tab });
 };
 
+// 捲軸事件
+// now：發送指令當下位置、next：預計到達的新位置
+export const getScrollEvent = (now: number, next: number) => {
+	// 發送事件
+	EventBus.$emit('to-scroll', { now, next });
+};
+
 const EventBus = new Vue();
 export default EventBus;

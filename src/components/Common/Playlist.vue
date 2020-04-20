@@ -9,7 +9,11 @@
 			<li @click="getArtist(item.artistID)">{{ item.artist }}</li>
 		</ul>
 		<div class="block">
-			<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-count="TotalPage"></el-pagination>
+			<el-pagination
+				layout="prev, pager, next"
+				@current-change="handleCurrentChange"
+				:page-count="TotalPage"
+			></el-pagination>
 		</div>
 	</div>
 </template>
@@ -38,6 +42,9 @@ export default class Playlist extends Vue {
 	handleCurrentChange(val: number) {
 		// 實際選中陣列 = 當前頁碼 - 1
 		this.CurrentPage = val - 1;
+		// console.log((this.$refs.childDiv as any).scrollTop);
+		// console.log((this as any).scrollTop);
+		EventBus.getScrollEvent(0, 0);
 	}
 
 	// 取得專輯

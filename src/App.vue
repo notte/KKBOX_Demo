@@ -12,7 +12,7 @@
 				</el-menu>
 			</header>
 			<el-main>
-				<div class="container">
+				<div class="container" ref="childDiv">
 					<router-view />
 				</div>
 			</el-main>
@@ -67,6 +67,10 @@ export default class App extends Vue {
 				message: err.message,
 				type: 'error',
 			});
+		});
+
+		EventBus.$on('to-scroll', (now: number, next: number) => {
+			(this.$refs.childDiv as any).scrollTop = 0;
 		});
 		// EventBus.$on('system-alert', (err: any) => {
 		// 	this.$message({
