@@ -13,9 +13,9 @@ const routes = [
 		name: 'PopularList',
 		component: () => import('@/view/PopularList.vue'),
 		children: [
-			{ path: 'Playlist', name: 'Playlist' },
-			{ path: 'Album', name: 'Album' },
-			{ path: 'Artist', name: 'Artist' },
+			{ path: 'Playlist/:id', name: 'Playlist' },
+			{ path: 'Album/:id', name: 'Album' },
+			{ path: 'Artist/:id', name: 'Artist' },
 		],
 	},
 	{
@@ -23,21 +23,23 @@ const routes = [
 		name: 'MainList',
 		component: () => import('@/view/MainList.vue'),
 		children: [
-			{ path: 'MainType', name: 'MainType' },
-			{ path: 'Playlist', name: 'MainPlaylist' },
-			{ path: 'Album', name: 'MainAlbum' },
-			{ path: 'Artist', name: 'MainArtist' },
+			{ path: 'MainType/:id', name: 'MainType' },
+			{ path: 'Playlist/:id', name: 'MainPlaylist' },
+			{ path: 'Album/:id', name: 'MainAlbum' },
+			{ path: 'Artist/:id', name: 'MainArtist' },
 		],
 	},
 ];
 
 const router = new VueRouter({
 	mode: 'history',
+	base: process.env.BASE_URL,
 	routes,
 });
 
-router.beforeEach((to, from, next) => {
-	next();
-});
+// const originalPush = VueRouter.prototype.push;
+// VueRouter.prototype.push = function push(location: any) {
+// 	return originalPush.call(this, location).catch(err => err);
+// };
 
 export default router;

@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
+import { Component, Prop, Watch } from 'vue-property-decorator';
 import Api from '@/api/common';
 import * as EventBus from '@/utilities/event-bus';
 import * as Status from '@/models/status/type';
@@ -49,18 +49,38 @@ export default class Playlist extends Vue {
 
 	// 取得專輯
 	getAlbum(id: string) {
-		if (this.PageType.type === Status.PlaylistType.Popular) {
-			EventBus.getInfo(id, Status.PopularType.Album);
-		} else if (this.PageType.type === Status.PlaylistType.MainList) {
-			EventBus.getMain(id, Status.MainType.Album);
+		// if (this.PageType.type === Status.PlaylistType.Popular) {
+		// 	EventBus.getInfo(id, Status.PopularType.Album);
+		// } else if (this.PageType.type === Status.PlaylistType.MainList) {
+		// 	EventBus.getMain(id, Status.MainType.Album);
+		// }
+		switch (this.PageType.type) {
+			case Status.PlaylistType.Popular:
+				EventBus.getInfo(id, Status.PopularType.Album);
+				break;
+			case Status.PlaylistType.MainList:
+				EventBus.getMain(id, Status.MainType.Album);
+				break;
+			default:
+				break;
 		}
 	}
 	// 取得歌手
 	getArtist(id: string) {
-		if (this.PageType.type === Status.PlaylistType.Popular) {
-			EventBus.getInfo(id, Status.PopularType.Artist);
-		} else if (this.PageType.type === Status.PlaylistType.MainList) {
-			EventBus.getMain(id, Status.MainType.Artist);
+		// if (this.PageType.type === Status.PlaylistType.Popular) {
+		// 	EventBus.getInfo(id, Status.PopularType.Artist);
+		// } else if (this.PageType.type === Status.PlaylistType.MainList) {
+		// 	EventBus.getMain(id, Status.MainType.Artist);
+		// }
+		switch (this.PageType.type) {
+			case Status.PlaylistType.Popular:
+				EventBus.getInfo(id, Status.PopularType.Artist);
+				break;
+			case Status.PlaylistType.MainList:
+				EventBus.getMain(id, Status.MainType.Artist);
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -69,6 +89,15 @@ export default class Playlist extends Vue {
 			this.ApiUrl = 'new-hits-playlists/' + this.PageType.id;
 		} else if (this.PageType.type === Status.PlaylistType.MainList) {
 			this.ApiUrl = 'featured-playlists/' + this.PageType.id;
+		}
+
+		const routerID = this.$router.app.$route.params.id;
+		const routerURL = this.$router.app.$route.path;
+
+		if (routerURL.indexOf('PopularList') !== -1) {
+			this.ApiUrl = 'new-hits-playlists/' + routerID;
+		} else if (routerURL.indexOf('MainList') !== -1) {
+			this.ApiUrl = 'featured-playlists/' + routerID;
 		}
 
 		Api.getPlaylist(this.ApiUrl).then(res => {

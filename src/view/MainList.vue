@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
+import { Component, Watch } from 'vue-property-decorator';
 import MainListCategories from '@/components/MainList/MainListCategories.vue';
 import MainCategoryList from '@/components/MainList/MainCategoryList.vue';
 import Album from '@/components/Common/Album.vue';
@@ -48,12 +48,17 @@ export default class MainList extends Vue {
 		return this.CurrentType === tab ? true : false;
 	}
 
+	@Watch('$route', { deep: true })
+	onRouteChange(to: any, from: any) {
+		this.CurrentType = to.name;
+	}
+
 	mounted() {
 		// 接收事件
 		EventBus.$on('get-info', (param: any) => {
 			this.Id = param.id;
 			// router跳轉
-			this.$router.push({ name: param.tab }).catch(err => {});
+			this.$router.push({ name: param.tab, params: { id: this.Id } }).catch(err => {});
 			// 切換顯示 component
 			this.CurrentType = param.tab;
 			this.Type = { id: param.id, type: Status.PlaylistType.MainList };

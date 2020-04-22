@@ -2,14 +2,14 @@
 	<div class="PopularList">
 		<PopularListMain v-if="isShow('PopularList')" />
 		<Playlist v-if="isShow('Playlist')" :PlaylistID="Id" :PageType="Type" />
-		<Album v-if="isShow('Album')" :AlbumID="Id" />
-		<Artist v-if="isShow('Artist')" :ArtistID="Id" />
+		<Album v-if="isShow('Album')" :AlbumID="Id" :PageType="Type" />
+		<Artist v-if="isShow('Artist')" :ArtistID="Id" :PageType="Type" />
 	</div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
+import { Component, Prop, Watch } from 'vue-property-decorator';
 import PopularListMain from '@/components/PopularList/PopularListMain.vue';
 import Playlist from '@/components/Common/Playlist.vue';
 import Album from '@/components/Common/Album.vue';
@@ -34,9 +34,17 @@ export default class PopularList extends Vue {
 	Id: string = '';
 	Type: object = {};
 
+	created() {}
+
 	// 判斷當前要顯示哪個組件
 	isShow(tab: Status.PopularType): boolean {
 		return this.CurrentType === tab ? true : false;
+	}
+
+	// deep：深度Watch
+	@Watch('$route', { deep: true })
+	onRouteChange(to: any, from: any) {
+		this.CurrentType = to.name;
 	}
 
 	mounted() {
@@ -44,7 +52,7 @@ export default class PopularList extends Vue {
 		EventBus.$on('get-info', (param: any) => {
 			this.Id = param.id;
 			// router跳轉
-			this.$router.push({ name: param.tab }).catch(err => {});
+			this.$router.push({ name: param.tab, params: { id: this.Id } }).catch(err => {});
 			// 切換顯示 component
 			this.CurrentType = param.tab;
 			this.Type = { id: param.id, type: Status.PlaylistType.Popular };

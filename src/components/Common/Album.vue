@@ -39,11 +39,21 @@ export default class Album extends Vue {
 	}
 
 	getArtist(id: string) {
-		if (this.$route.path.indexOf('PopularList') !== -1) {
-			EventBus.getInfo(id, Status.PopularType.Artist);
-		}
-		if (this.$route.path.indexOf('MainList') !== -1) {
-			EventBus.getMain(id, Status.MainType.Artist);
+		// if (this.$route.path.indexOf('PopularList') !== -1) {
+		// 	EventBus.getInfo(id, Status.PopularType.Artist);
+		// }
+		// if (this.$route.path.indexOf('MainList') !== -1) {
+		// 	EventBus.getMain(id, Status.MainType.Artist);
+		// }
+		switch (this.PageType.type) {
+			case Status.PlaylistType.Popular:
+				EventBus.getInfo(id, Status.PopularType.Artist);
+				break;
+			case Status.PlaylistType.MainList:
+				EventBus.getMain(id, Status.MainType.Artist);
+				break;
+			default:
+				break;
 		}
 	}
 	TimeChange(time: number) {

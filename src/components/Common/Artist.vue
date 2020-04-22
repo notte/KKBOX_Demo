@@ -28,6 +28,7 @@ import * as Status from '@/models/status/type';
 @Component
 export default class Artist extends Vue {
 	@Prop(String) readonly ArtistID!: string;
+	@Prop(Object) readonly PageType!: any;
 	// 帶入ID的歌手所有專輯
 	ArtistTrack: Model.ITrackData[] = [];
 	// 藝人
@@ -46,11 +47,21 @@ export default class Artist extends Vue {
 	}
 
 	getAlbum(id: string) {
-		if (this.$route.path.indexOf('PopularList') !== -1) {
-			EventBus.getInfo(id, Status.PopularType.Album);
-		}
-		if (this.$route.path.indexOf('MainList') !== -1) {
-			EventBus.getMain(id, Status.MainType.Album);
+		// if (this.$route.path.indexOf('PopularList') !== -1) {
+		// 	EventBus.getInfo(id, Status.PopularType.Album);
+		// }
+		// if (this.$route.path.indexOf('MainList') !== -1) {
+		// 	EventBus.getMain(id, Status.MainType.Album);
+		// }
+		switch (this.PageType.type) {
+			case Status.PlaylistType.Popular:
+				EventBus.getInfo(id, Status.PopularType.Album);
+				break;
+			case Status.PlaylistType.MainList:
+				EventBus.getMain(id, Status.MainType.Album);
+				break;
+			default:
+				break;
 		}
 	}
 }
