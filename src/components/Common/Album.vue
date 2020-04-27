@@ -28,23 +28,7 @@ export default class Album extends Vue {
 	Album: object = {};
 	Tracks: object = {};
 
-	created() {
-		Api.getAlbum(this.AlbumID).then(res => {
-			const { name, release_date, images, artist } = res;
-			this.Album = { album_name: name, date: release_date, images: images[1].url, artist: artist.name, artist_id: artist.id };
-		});
-		Api.getTracks(this.AlbumID).then(res => {
-			this.Tracks = res.data;
-		});
-	}
-
 	getArtist(id: string) {
-		// if (this.$route.path.indexOf('PopularList') !== -1) {
-		// 	EventBus.getInfo(id, Status.PopularType.Artist);
-		// }
-		// if (this.$route.path.indexOf('MainList') !== -1) {
-		// 	EventBus.getMain(id, Status.MainType.Artist);
-		// }
 		switch (this.PageType.type) {
 			case Status.PlaylistType.Popular:
 				EventBus.getInfo(id, Status.PopularType.Artist);
@@ -56,11 +40,22 @@ export default class Album extends Vue {
 				break;
 		}
 	}
+
 	TimeChange(time: number) {
 		const min = Math.floor(time / 1000 / 60);
 		let sec = Math.floor((time / 1000) % 60).toString();
 		sec = sec.length === 1 ? '0' + sec : sec;
 		return '0' + min + ':' + sec;
+	}
+
+	created() {
+		Api.getAlbum(this.AlbumID).then(res => {
+			const { name, release_date, images, artist } = res;
+			this.Album = { album_name: name, date: release_date, images: images[1].url, artist: artist.name, artist_id: artist.id };
+		});
+		Api.getTracks(this.AlbumID).then(res => {
+			this.Tracks = res.data;
+		});
 	}
 }
 </script>

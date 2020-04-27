@@ -5,11 +5,11 @@ export enum PopularType {
 	// 熱門類別列表
 	PopularList = 'PopularList',
 	// 熱門類別列表歌單
-	Playlist = 'Playlist',
+	Playlist = 'PopularPlaylist',
 	// 專輯
-	Album = 'Album',
+	Album = 'PopularAlbum',
 	// 歌手
-	Artist = 'Artist',
+	Artist = 'PopularArtist',
 }
 
 // 紀錄當前主題歌單顯示內容

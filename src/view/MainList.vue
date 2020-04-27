@@ -3,8 +3,8 @@
 		<MainListCategories v-if="isShow('MainList')" />
 		<MainCategoryList :CategoryID="Id" v-if="isShow('MainType')" />
 		<Playlist :PlaylistID="Id" :PageType="Type" v-if="isShow('MainPlaylist')" />
-		<Album v-if="isShow('MainAlbum')" :AlbumID="Id" />
-		<Artist v-if="isShow('MainArtist')" :ArtistID="Id" />
+		<Album v-if="isShow('MainAlbum')" :AlbumID="Id" :PageType="Type" />
+		<Artist v-if="isShow('MainArtist')" :ArtistID="Id" :PageType="Type" />
 	</div>
 </template>
 
@@ -48,6 +48,7 @@ export default class MainList extends Vue {
 		return this.CurrentType === tab ? true : false;
 	}
 
+	// deep：深度Watch
 	@Watch('$route', { deep: true })
 	onRouteChange(to: any, from: any) {
 		this.CurrentType = to.name;

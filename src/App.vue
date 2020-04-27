@@ -2,12 +2,12 @@
 	<div id="app">
 		<el-container class="project_container">
 			<header class="header_button">
-				<el-menu default-active="1">
+				<el-menu>
 					<router-link to="/PopularList">
-						<el-menu-item index="1">熱門歌單</el-menu-item>
+						<el-menu-item>熱門歌單</el-menu-item>
 					</router-link>
 					<router-link to="/MainList">
-						<el-menu-item index="2">主題歌單</el-menu-item>
+						<el-menu-item>主題歌單</el-menu-item>
 					</router-link>
 				</el-menu>
 			</header>
@@ -29,8 +29,6 @@ import * as Model from '@/models/interfaces/common';
 import EventBus, { SystemAlert } from '@/utilities/event-bus';
 import * as Status from '@/models/status/type';
 
-// import Cookies from 'js-cookie';
-
 // 取得 Token 命名空間
 const tokenModule = namespace('Token');
 
@@ -45,7 +43,6 @@ export default class App extends Vue {
 
 	// private表示為私人的
 	@Action('Token/setPublicToken') private setPublicToken!: any;
-	// @State('Token/setPublicToken') private publicToken!: any;
 
 	created() {
 		this.GetTokenRequest.grant_type = 'client_credentials';
@@ -55,9 +52,6 @@ export default class App extends Vue {
 			this.setPublicToken(res.access_token);
 			localStorage.setItem('accessToken', res.access_token);
 		});
-		// .catch(err => {
-		// 	SystemAlert(Status.SysMessageType.Error, Status.ErrorPopupContent.InternalServer);
-		// });
 	}
 
 	beforeMount() {
@@ -72,29 +66,6 @@ export default class App extends Vue {
 		EventBus.$on('to-scroll', (now: number, next: number) => {
 			(this.$refs.childDiv as any).scrollTop = 0;
 		});
-		// EventBus.$on('system-alert', (err: any) => {
-		// 	this.$message({
-		// 		showClose: true,
-		// 		message: err.message,
-		// 		type: 'error',
-		// 	});
-		// });
 	}
-	// mounted() {
-	// 	this.getSearch.q = '周杰倫';
-	// 	this.getSearch.territory = 'TW';
-	// 	this.getSearch.type = 'track';
-	// 	this.getSearch.limit = 50;
-	// 	Api.Search(this.getSearch)
-	// 		.then(res => {
-	// 			EventBus.$on('api-success', () => {
-	// 				this.$message({
-	// 					showClose: true,
-	// 					message: '123',
-	// 				});
-	// 			});
-	// 		})
-	// 		.catch(err => {});
-	// }
 }
 </script>

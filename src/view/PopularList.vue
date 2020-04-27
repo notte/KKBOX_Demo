@@ -1,9 +1,9 @@
 <template>
 	<div class="PopularList">
 		<PopularListMain v-if="isShow('PopularList')" />
-		<Playlist v-if="isShow('Playlist')" :PlaylistID="Id" :PageType="Type" />
-		<Album v-if="isShow('Album')" :AlbumID="Id" :PageType="Type" />
-		<Artist v-if="isShow('Artist')" :ArtistID="Id" :PageType="Type" />
+		<Playlist v-if="isShow('PopularPlaylist')" :PlaylistID="Id" :PageType="Type" />
+		<Album v-if="isShow('PopularAlbum')" :AlbumID="Id" :PageType="Type" />
+		<Artist v-if="isShow('PopularArtist')" :ArtistID="Id" :PageType="Type" />
 	</div>
 </template>
 

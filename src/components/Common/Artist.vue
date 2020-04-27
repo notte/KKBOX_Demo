@@ -34,25 +34,7 @@ export default class Artist extends Vue {
 	// 藝人
 	Artist: any = '';
 
-	created() {
-		Api.getArtist(this.ArtistID).then(res => {
-			this.ArtistTrack = res.data;
-			this.ArtistTrack.reverse();
-			this.Artist = this.ArtistTrack[0].artist;
-			const { id, name, images } = this.Artist;
-			this.Artist = {};
-			Object.assign(this.Artist, { id, name, images: images[1].url });
-			// console.log(this.ArtistTrack);
-		});
-	}
-
 	getAlbum(id: string) {
-		// if (this.$route.path.indexOf('PopularList') !== -1) {
-		// 	EventBus.getInfo(id, Status.PopularType.Album);
-		// }
-		// if (this.$route.path.indexOf('MainList') !== -1) {
-		// 	EventBus.getMain(id, Status.MainType.Album);
-		// }
 		switch (this.PageType.type) {
 			case Status.PlaylistType.Popular:
 				EventBus.getInfo(id, Status.PopularType.Album);
@@ -63,6 +45,17 @@ export default class Artist extends Vue {
 			default:
 				break;
 		}
+	}
+
+	created() {
+		Api.getArtist(this.ArtistID).then(res => {
+			this.ArtistTrack = res.data;
+			this.ArtistTrack.reverse();
+			this.Artist = this.ArtistTrack[0].artist;
+			const { id, name, images } = this.Artist;
+			this.Artist = {};
+			Object.assign(this.Artist, { id, name, images: images[1].url });
+		});
 	}
 }
 </script>

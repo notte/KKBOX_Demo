@@ -42,18 +42,11 @@ export default class Playlist extends Vue {
 	handleCurrentChange(val: number) {
 		// 實際選中陣列 = 當前頁碼 - 1
 		this.CurrentPage = val - 1;
-		// console.log((this.$refs.childDiv as any).scrollTop);
-		// console.log((this as any).scrollTop);
 		EventBus.getScrollEvent(0, 0);
 	}
 
 	// 取得專輯
 	getAlbum(id: string) {
-		// if (this.PageType.type === Status.PlaylistType.Popular) {
-		// 	EventBus.getInfo(id, Status.PopularType.Album);
-		// } else if (this.PageType.type === Status.PlaylistType.MainList) {
-		// 	EventBus.getMain(id, Status.MainType.Album);
-		// }
 		switch (this.PageType.type) {
 			case Status.PlaylistType.Popular:
 				EventBus.getInfo(id, Status.PopularType.Album);
@@ -67,11 +60,6 @@ export default class Playlist extends Vue {
 	}
 	// 取得歌手
 	getArtist(id: string) {
-		// if (this.PageType.type === Status.PlaylistType.Popular) {
-		// 	EventBus.getInfo(id, Status.PopularType.Artist);
-		// } else if (this.PageType.type === Status.PlaylistType.MainList) {
-		// 	EventBus.getMain(id, Status.MainType.Artist);
-		// }
 		switch (this.PageType.type) {
 			case Status.PlaylistType.Popular:
 				EventBus.getInfo(id, Status.PopularType.Artist);
@@ -85,20 +73,25 @@ export default class Playlist extends Vue {
 	}
 
 	created() {
-		if (this.PageType.type === Status.PlaylistType.Popular) {
-			this.ApiUrl = 'new-hits-playlists/' + this.PageType.id;
-		} else if (this.PageType.type === Status.PlaylistType.MainList) {
-			this.ApiUrl = 'featured-playlists/' + this.PageType.id;
+		switch (this.PageType.type) {
+			case Status.PlaylistType.Popular:
+				this.ApiUrl = 'new-hits-playlists/' + this.PageType.id;
+				break;
+			case Status.PlaylistType.MainList:
+				this.ApiUrl = 'featured-playlists/' + this.PageType.id;
+				break;
+			default:
+				break;
 		}
 
-		const routerID = this.$router.app.$route.params.id;
-		const routerURL = this.$router.app.$route.path;
+		// const routerID = this.$router.app.$route.params.id;
+		// const routerURL = this.$router.app.$route.path;
 
-		if (routerURL.indexOf('PopularList') !== -1) {
-			this.ApiUrl = 'new-hits-playlists/' + routerID;
-		} else if (routerURL.indexOf('MainList') !== -1) {
-			this.ApiUrl = 'featured-playlists/' + routerID;
-		}
+		// if (routerURL.indexOf('PopularList') !== -1) {
+		// 	this.ApiUrl = 'new-hits-playlists/' + routerID;
+		// } else if (routerURL.indexOf('MainList') !== -1) {
+		// 	this.ApiUrl = 'featured-playlists/' + routerID;
+		// }
 
 		Api.getPlaylist(this.ApiUrl).then(res => {
 			for (const item of res.tracks.data) {
