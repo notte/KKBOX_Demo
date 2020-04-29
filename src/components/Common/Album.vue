@@ -41,6 +41,7 @@ export default class Album extends Vue {
 		}
 	}
 
+	// 時間長度轉換為歌曲長度
 	TimeChange(time: number) {
 		const min = Math.floor(time / 1000 / 60);
 		let sec = Math.floor((time / 1000) % 60).toString();

@@ -29,6 +29,11 @@ const routes = [
 			{ path: '/Artist/:id', name: 'MainArtist' },
 		],
 	},
+	{
+		path: '/404',
+		name: 'Error404',
+		component: () => import('@/components/Common/Error404.vue'),
+	},
 ];
 
 const router = new VueRouter({

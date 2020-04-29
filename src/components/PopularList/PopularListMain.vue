@@ -1,5 +1,4 @@
 <template>
-	<!-- 熱門歌單類別列表 -->
 	<div>
 		<ul v-for="item in HitsPlaylists" :key="item.id" class="PopularList">
 			<li>
@@ -21,18 +20,12 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import Api from '@/api/hits-playlists-api';
-// import EventBus from '@/utilities/event-bus';
 import EventBus, { SystemAlert, getInfo } from '@/utilities/event-bus';
 import * as Model from '@/models/interfaces/hitsPlaylists';
 import * as Status from '@/models/status/type';
 
-// 錯誤訊息：Type 'X' is missing the following properties from type 'X': length, pop, push, concat, and 28 more.
-// 解決方法為改宣告方式，錯誤為 -> hitsPlaylists:Model.IGetNewHitsPlaylistsReponse[] = [];
-// hitsPlaylists = {} as Model.IGetNewHitsPlaylistsReponse;
-
 @Component
 export default class PopularListMain extends Vue {
-	// hitsPlaylists = {} as Model.IGetNewHitsPlaylistsReponse;
 	HitsPlaylists: Model.IData[] = [];
 
 	created() {
@@ -40,8 +33,8 @@ export default class PopularListMain extends Vue {
 			this.HitsPlaylists = res.data;
 		});
 	}
+
 	getPlaylist(id: string): void {
-		// 發送事件，帶入對應的id以及開啟類型
 		getInfo(id, Status.PopularType.Playlist);
 	}
 }

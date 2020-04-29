@@ -42,19 +42,22 @@ export default class PopularList extends Vue {
 	}
 
 	// deep：深度Watch
+	// 監聽 router 變化
 	@Watch('$route', { deep: true })
 	onRouteChange(to: any, from: any) {
 		this.CurrentType = to.name;
 	}
 
 	mounted() {
-		// 接收 get-playlist 事件，點擊歌單
+		// 接收 get-playlist 事件，切換對應組件
+		// param 回傳點擊當前的 id 及開啟類型
 		EventBus.$on('get-info', (param: any) => {
 			this.Id = param.id;
-			// router跳轉
+			// router 跳轉，並帶入當前點擊的id
 			this.$router.push({ name: param.tab, params: { id: this.Id } }).catch(err => {});
 			// 切換顯示 component
 			this.CurrentType = param.tab;
+			// 傳值到組件
 			this.Type = { id: param.id, type: Status.PlaylistType.Popular };
 		});
 	}

@@ -31,7 +31,6 @@ export default class Artist extends Vue {
 	@Prop(Object) readonly PageType!: any;
 	// 帶入ID的歌手所有專輯
 	ArtistTrack: Model.ITrackData[] = [];
-	// 藝人
 	Artist: any = '';
 
 	getAlbum(id: string) {

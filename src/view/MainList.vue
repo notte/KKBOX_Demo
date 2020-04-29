@@ -29,17 +29,11 @@ import EventBus from '@/utilities/event-bus';
 	},
 })
 export default class MainList extends Vue {
-	// 當前開啟類別
 	CurrentType: string = Status.MainType.MainList!;
-	// 主題類別
 	MainList: Status.MainType = Status.MainType.MainList;
-	// 類別下所有歌單列表
 	MainType: Status.MainType = Status.MainType.MainType;
-	// 歌單
 	Playlist: Status.MainType = Status.MainType.Playlist;
-	// 專輯
 	Album: Status.MainType = Status.MainType.Album;
-	// 歌手
 	Artist: Status.MainType = Status.MainType.Artist;
 	Id: string = '';
 	Type: object = {};
@@ -48,19 +42,15 @@ export default class MainList extends Vue {
 		return this.CurrentType === tab ? true : false;
 	}
 
-	// deep：深度Watch
 	@Watch('$route', { deep: true })
 	onRouteChange(to: any, from: any) {
 		this.CurrentType = to.name;
 	}
 
 	mounted() {
-		// 接收事件
 		EventBus.$on('get-info', (param: any) => {
 			this.Id = param.id;
-			// router跳轉
 			this.$router.push({ name: param.tab, params: { id: this.Id } }).catch(err => {});
-			// 切換顯示 component
 			this.CurrentType = param.tab;
 			this.Type = { id: param.id, type: Status.PlaylistType.MainList };
 		});

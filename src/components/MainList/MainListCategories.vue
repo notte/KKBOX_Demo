@@ -1,6 +1,6 @@
 <template>
+	<!-- 主題列表 -->
 	<div>
-		<!-- 主題歌單 - 主題列表 -->
 		<div class="MainListCategories">
 			<div v-for="item in MainList" :key="item.id">
 				<img :src="item.images[1].url" @click="getCategory(item.id)" />
@@ -22,14 +22,13 @@ import * as Status from '@/models/status/type';
 export default class MaiinListCategories extends Vue {
 	// 主題列表
 	MainList: object[] = [];
+
 	created() {
 		Api.getMainListCategories().then(res => {
 			this.MainList = res.data;
-			// console.log(this.MainList);
 		});
 	}
 	getCategory(id: string) {
-		// 發送事件，帶入對應的id以及開啟類型
 		EventBus.getMain(id, Status.MainType.MainType);
 	}
 }

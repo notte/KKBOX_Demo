@@ -1,7 +1,7 @@
 <template>
+	<!-- 選中主題 -> 歌單 -->
 	<div>
 		<ul v-for="item in MainCategory[CurrentPage]" :key="item.id" class="MainCategoryList">
-			<!-- PopularList -->
 			<li>
 				<div class="Playlist_images">
 					<div class="images">
@@ -16,7 +16,11 @@
 			</li>
 		</ul>
 		<div class="block">
-			<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-count="TotalPage"></el-pagination>
+			<el-pagination
+				layout="prev, pager, next"
+				@current-change="handleCurrentChange"
+				:page-count="TotalPage"
+			></el-pagination>
 		</div>
 	</div>
 </template>

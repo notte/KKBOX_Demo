@@ -1,4 +1,5 @@
 <template>
+	<!-- 歌單 -->
 	<div>
 		<ul v-for="item in Playlist[CurrentPage]" :key="item.AlbumId" class="Playlist">
 			<li class="Playlist_images">
@@ -31,17 +32,17 @@ export default class Playlist extends Vue {
 	@Prop(Object) readonly PageType!: any;
 	// 所有歌單資料
 	Playlist: object[] = [];
-	// 總頁數，重新整理後的陣列長度
 	TotalPage: number = 0;
 	// 目前選中的頁碼
 	CurrentPage: number = 0;
-	// API URL
+	// API URL，要取得哪一種歌單
 	ApiUrl: string = '';
 
 	// 取得當前頁碼
 	handleCurrentChange(val: number) {
-		// 實際選中陣列 = 當前頁碼 - 1
+		// 實際選中陣列位置 = 當前頁碼 - 1
 		this.CurrentPage = val - 1;
+		// 發送事件，捲軸回到最上
 		EventBus.getScrollEvent(0, 0);
 	}
 
@@ -84,15 +85,6 @@ export default class Playlist extends Vue {
 				break;
 		}
 
-		// const routerID = this.$router.app.$route.params.id;
-		// const routerURL = this.$router.app.$route.path;
-
-		// if (routerURL.indexOf('PopularList') !== -1) {
-		// 	this.ApiUrl = 'new-hits-playlists/' + routerID;
-		// } else if (routerURL.indexOf('MainList') !== -1) {
-		// 	this.ApiUrl = 'featured-playlists/' + routerID;
-		// }
-
 		Api.getPlaylist(this.ApiUrl).then(res => {
 			for (const item of res.tracks.data) {
 				const { name } = item;
@@ -100,23 +92,25 @@ export default class Playlist extends Vue {
 				this.Playlist.push({ id, Image: item.album.images[1].url, name, date: release_date, artist: artist.name, artistID: artist.id });
 			}
 
-			this.TotalPage = this.Playlist.length;
-
 			const newData: any = [];
 
 			// item 為陣列物件的每一個物件，i 為物件索引
 			this.Playlist.forEach((item, i) => {
-				// 每十筆資料就新增一個空陣列
+				// 遍歷所有item，如果該陣列索引 i/10 餘數為 0（每十筆資料），就新增一個空陣列
 				if (i % 10 === 0) {
 					newData.push([]);
 				}
 
-				// 將當前的 i/10 取整數，表示每十筆換一頁，因此為 0/10/20/30...
+				// 將當前的陣列索引 i/10 取整數
+				// 表示每十筆換一頁，因此 page 為 0/10/20/30...
 				const page = Math.floor(i / 10);
+
+				// 將當前 item push
 				newData[page].push(item);
-				this.Playlist = newData;
 			});
 
+			this.Playlist = newData;
+			// 總頁數
 			this.TotalPage = this.Playlist.length;
 		});
 	}
