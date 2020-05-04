@@ -30,7 +30,7 @@ const routes = [
 		],
 	},
 	{
-		path: '/404',
+		path: '*',
 		name: 'Error404',
 		component: () => import('@/components/Common/Error404.vue'),
 	},
@@ -39,6 +39,12 @@ const routes = [
 const router = new VueRouter({
 	mode: 'history',
 	routes,
+});
+
+router.beforeEach((to, from, next) => {
+	console.log(to);
+	console.log(from);
+	next();
 });
 
 export default router;

@@ -1,8 +1,8 @@
 <template>
 	<!-- 選中主題 -> 歌單 -->
 	<div>
-		<ul v-for="item in MainCategory[CurrentPage]" :key="item.id" class="MainCategoryList">
-			<li>
+		<ul class="MainCategoryList">
+			<li v-for="item in MainCategory[CurrentPage]" :key="item.id">
 				<div class="Playlist_images">
 					<div class="images">
 						<img :src="item.Images" alt />
@@ -47,7 +47,6 @@ export default class MaiinCategoryList extends Vue {
 	// MainCategoryList = {} as Model.IPlaylist;
 	created() {
 		Api.getMainCategory(this.CategoryID).then(res => {
-			// this.MainCategoryList = res.playlists.data;
 			for (const item of res.playlists.data) {
 				const { id, title, description, images } = item;
 				this.MainCategory.push({ id, title, description, Images: images[2].url });
@@ -56,10 +55,10 @@ export default class MaiinCategoryList extends Vue {
 			const newData: any = [];
 
 			this.MainCategory.forEach((item, i) => {
-				if (i % 10 === 0) {
+				if (i % 9 === 0) {
 					newData.push([]);
 				}
-				const page = Math.floor(i / 10);
+				const page = Math.floor(i / 9);
 				newData[page].push(item);
 				this.MainCategory = newData;
 			});
@@ -67,11 +66,9 @@ export default class MaiinCategoryList extends Vue {
 		});
 	}
 	handleCurrentChange(val: number) {
-		// 實際選中陣列 = 當前頁碼 - 1
 		this.CurrentPage = val - 1;
 	}
 	getPlaylist(id: string): void {
-		// 發送事件，帶入對應的id以及開啟類型
 		EventBus.getMain(id, Status.MainType.Playlist);
 	}
 }

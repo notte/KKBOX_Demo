@@ -34,8 +34,6 @@ export default class PopularList extends Vue {
 	Id: string = '';
 	Type: object = {};
 
-	created() {}
-
 	// 判斷當前要顯示哪個組件
 	isShow(tab: Status.PopularType): boolean {
 		return this.CurrentType === tab ? true : false;

@@ -74,9 +74,9 @@ a {
 		padding: 0;
 
 		.container {
-			overflow-y: scroll;
+			overflow-y: auto;
 			flex: 1 1 0;
-			padding: 50px 0;
+			// padding: 50px 0;
 		}
 	}
 }
@@ -85,7 +85,7 @@ a {
 
 ul.PopularList {
 	width: 100%;
-	margin: 20px 0;
+	padding: 50px 0;
 
 	li {
 		display: flex;
@@ -165,6 +165,7 @@ ul.Playlist {
 	display: flex;
 	align-items: center;
 	border-bottom: 1px solid $MainColor;
+	padding: 50px 0;
 
 	li {
 		text-align: center;
@@ -193,9 +194,8 @@ ul.Playlist {
 }
 
 // 主題歌單 - 類別
-
 div.MainListCategories {
-	padding: 3% 20%;
+	padding: 5% 20%;
 
 	div {
 		display: inline-block;
@@ -226,13 +226,14 @@ div.MainListCategories {
 
 // 主題歌單 - 類別下歌單列表
 ul.MainCategoryList {
-	vertical-align: top;
-	width: 50%;
-	display: inline-block;
-	border-radius: 10px;
+	// width: 100%;
+	padding: 5% 5% 0% 5%;
 
 	li {
 		margin-bottom: -3px;
+		vertical-align: top;
+		width: 33.333333%;
+		display: inline-block;
 
 		.Playlist_images {
 			width: 100%;
@@ -285,7 +286,7 @@ ul.MainCategoryList {
 
 // 頁碼
 .block {
-	margin-top: 50px;
+	margin: 50px 0;
 	text-align: center;
 	width: calc(100vw - 15px);
 
@@ -371,7 +372,6 @@ ul.MainCategoryList {
 }
 
 // 歌手
-
 .Artist {
 	margin: 0 50px;
 	text-align: center;
@@ -416,5 +416,27 @@ ul.MainCategoryList {
 				}
 			}
 		}
+	}
+}
+
+// 404
+div.error {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	background-color: #E4E4E1;
+	background-image: radial-gradient(at top center, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.03) 100%), linear-gradient(to top, rgba(255, 255, 255, 0.1) 0%, rgba(143, 152, 157, 0.60) 100%);
+	background-blend-mode: normal, multiply;
+
+	h1 {
+		color: $white;
+		font-weight: 900;
+		font-size: 3em;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%);
 	}
 }
