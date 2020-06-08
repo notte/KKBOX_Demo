@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import * as EventBus from '@/utilities/event-bus';
+import * as Status from '@/models/status/type';
 
 Vue.use(VueRouter);
 
@@ -38,12 +40,18 @@ const routes = [
 
 const router = new VueRouter({
 	mode: 'history',
+	base: '/',
 	routes,
 });
 
 router.beforeEach((to, from, next) => {
-	// console.log(to);
-	// console.log(from);
+	if (to.path.match('Playlist')) {
+	} else if (to.path.match('Album')) {
+		EventBus.getInfo(to.params.id, Status.PopularType.Album);
+	} else if (to.path.match('Artist')) {
+	} else if (to.path.match('MainType')) {
+	}
+
 	next();
 });
 
