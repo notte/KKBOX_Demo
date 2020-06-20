@@ -1,11 +1,10 @@
 module.exports = {
-	publicPath: '/',
-	// process.env.NODE_ENV === 'production' ?
-	// 	'/KKBOX_Demo/' : '/'
+	publicPath: process.env.NODE_ENV === 'production' ?
+		'/KKBOX_Demo/' : '/',
 	devServer: {
 		open: true,
 		host: 'localhost',
-		port: 8080,
+		port: 8081,
 		https: false,
 		hotOnly: false,
 		proxy: {
@@ -25,9 +24,9 @@ module.exports = {
 			},
 		},
 	},
-	configureWebpack: {
-		output: {
-			publicPath: '/'
-		},
-	}
+	// configureWebpack: {
+	// 	output: {
+	// 		publicPath: '/'
+	// 	},
+	// }
 };

@@ -45,13 +45,6 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-	if (to.path.match('Playlist')) {
-	} else if (to.path.match('Album')) {
-		EventBus.getInfo(to.params.id, Status.PopularType.Album);
-	} else if (to.path.match('Artist')) {
-	} else if (to.path.match('MainType')) {
-	}
-
 	next();
 });
 
