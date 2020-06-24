@@ -14,3 +14,5 @@ git push -f https://github.com/notte/KKBOX_Demo.git master:gh-pages
 cd -
 
 # git push -f git@github.com:notte/backoffice.git master
+
+# 指令：sh deploy.sh
