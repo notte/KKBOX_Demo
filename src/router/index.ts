@@ -1,7 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import * as EventBus from '@/utilities/event-bus';
-import * as Status from '@/models/status/type';
 
 Vue.use(VueRouter);
 
