@@ -1,20 +1,23 @@
 import { IActionContextBasic } from '@/store/index';
-// 引入commit及dispatch
+// 引入 commit 及 dispatch
 
+// State 的 interface
 export interface IState {
 	publicToken: string;
 	userToken: string;
 }
 
-const PUBLIC_TOKEN = 'PUBLIC_TOKEN';
-
+// 宣告 State
 const initState: IState = {
 	publicToken: '',
 	userToken: '',
 };
 
+// 常數宣告 mutations 事件名稱
+const PUBLIC_TOKEN = 'PUBLIC_TOKEN';
+
 const getters = {
-	// 映射state
+	// 映射 state
 	publicToken: (state: IState) => state.publicToken,
 	userToken: (state: IState) => state.userToken,
 };
