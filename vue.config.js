@@ -9,7 +9,7 @@ module.exports = {
 		hotOnly: false,
 		proxy: {
 			'/token': {
-				target: process.env.VUE_APP_TOKEN_URL,
+				target: `https://account.kkbox.com/oauth2/token`,
 				changeOrigin: true,
 				ws: true,
 				pathRewrite: {
