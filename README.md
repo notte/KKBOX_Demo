@@ -1,23 +1,10 @@
-# kkbox_demo
+### 使用技術
 
-## Project setup
+* Vue.js
+* TypeScript
+* SCSS
+* Vue i18
 
-```
-npm install
-```
+### 使用資源
 
-### Compiles and hot-reloads for development
-
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+* KKBox Open API
