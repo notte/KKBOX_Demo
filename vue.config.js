@@ -12,6 +12,9 @@ module.exports = {
 				target: process.env.VUE_APP_TOKEN_URL,
 				changeOrigin: true,
 				ws: true,
+				pathRewrite: {
+					'^/token': '',
+				},
 			},
 		},
 	},
