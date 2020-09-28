@@ -13,7 +13,7 @@ export default {
 	async getToken(payload: Model.IgetTokenRequest): Promise<Model.IgetTokenReponse> {
 		const config = {
 			method: 'post',
-			url: `https://account.kkbox.com/oauth2/token`,
+			url: `/token`,
 			data: payload,
 		};
 		const result = await Handler.request(config);
