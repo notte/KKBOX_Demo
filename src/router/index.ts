@@ -38,7 +38,7 @@ const routes = [
 
 const router = new VueRouter({
 	mode: 'hash',
-	base: '/',
+	base: process.env.BASE_URL,
 	routes,
 });
 

@@ -10,6 +10,7 @@
 		"@types/js-cookie": "^2.2.6",
 		"axios": "^0.18.1",
 		"core-js": "^3.4.4",
+		"dotenv": "^8.2.0",
 		"element-ui": "^2.13.0",
 		"qs": "^6.9.1",
 		"tslint-config-prettier": "^1.18.0",

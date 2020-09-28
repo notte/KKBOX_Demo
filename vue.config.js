@@ -9,24 +9,10 @@ module.exports = {
 		hotOnly: false,
 		proxy: {
 			'/token': {
-				target: 'https://account.kkbox.com/oauth2/token',
+				target: process.env.VUE_APP_TOKEN_URL,
 				changeOrigin: true,
 				ws: true,
-			},
-			'/api': {
-				target: 'https://api.kkbox.com/v1.1/',
-				ws: true,
-				host: 'api.kkbox.com',
-				changeOrigin: true,
-				pathRewrite: {
-					'^/api': '',
-				},
 			},
 		},
 	},
-	// configureWebpack: {
-	// 	output: {
-	// 		publicPath: '/'
-	// 	},
-	// }
 };

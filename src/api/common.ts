@@ -3,6 +3,9 @@ import Handler from '@/utilities/api-handle';
 // 管理request及reponse型別
 import * as Model from '@/models/interfaces/common';
 
+const URL = process.env.VUE_APP_URL;
+const TOKEN_URL = process.env.VUE_APP_TOKEN_URL;
+
 // 共用api
 
 export default {
@@ -20,7 +23,7 @@ export default {
 	async Search(payload: Model.ISearchRequest): Promise<Model.ISearchReponse> {
 		const config = {
 			method: 'get',
-			url: `/api/search?q=${payload.q}&territory=${payload.territory}&limit=${payload.limit}&type=${payload.type}`,
+			url: URL + `search?q=${payload.q}&territory=${payload.territory}&limit=${payload.limit}&type=${payload.type}`,
 			data: payload,
 		};
 		const result = await Handler.request(config);
@@ -30,7 +33,7 @@ export default {
 	async getPlaylist(url: string): Promise<Model.IgetPlaylistReponse> {
 		const config = {
 			method: 'get',
-			url: `/api/${url}?territory=TW`,
+			url: URL + `${url}?territory=TW`,
 		};
 		const result = await Handler.request(config);
 		return <Model.IgetPlaylistReponse>result.data;
@@ -39,7 +42,7 @@ export default {
 	async getAlbum(id: string): Promise<Model.IAlbum> {
 		const config = {
 			method: 'get',
-			url: `/api/albums/${id}?territory=TW`,
+			url: URL + `albums/${id}?territory=TW`,
 		};
 		const result = await Handler.request(config);
 		return <Model.IAlbum>result.data;
@@ -48,7 +51,7 @@ export default {
 	async getTracks(id: string): Promise<Model.ITrack> {
 		const config = {
 			method: 'get',
-			url: `/api/albums/${id}/tracks?territory=TW`,
+			url: URL + `albums/${id}/tracks?territory=TW`,
 		};
 		const result = await Handler.request(config);
 		return <Model.ITrack>result.data;
@@ -57,17 +60,9 @@ export default {
 	async getArtist(id: string): Promise<Model.IArtistTrack> {
 		const config = {
 			method: 'get',
-			url: `/api/artists/${id}/albums?territory=TW`,
+			url: URL + `artists/${id}/albums?territory=TW`,
 		};
 		const result = await Handler.request(config);
 		return <Model.IArtistTrack>result.data;
 	},
-	// async getArtist(id: string): Promise<Model.IArtist> {
-	// 	const config = {
-	// 		method: 'get',
-	// 		url: `/api/artists/${id}?territory=TW`,
-	// 	};
-	// 	const result = await Handler.request(config);
-	// 	return <Model.IArtist>result.data;
-	// },
 };
