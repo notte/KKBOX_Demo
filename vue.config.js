@@ -1,6 +1,5 @@
 module.exports = {
-	publicPath: process.env.NODE_ENV === 'production' ?
-		'/KKBOX_Demo' : '/',
+	publicPath: '/',
 	devServer: {
 		open: true,
 		host: 'localhost',
@@ -8,13 +7,13 @@ module.exports = {
 		https: false,
 		hotOnly: false,
 		proxy: {
-			'/token': {
-				target: `https://account.kkbox.com/oauth2/token`,
+			[process.env.VUE_APP_BASE_TOKEN_URL]: {
+				target: process.env.VUE_APP_TOKEN_URL,
 				changeOrigin: true,
 				ws: true,
 				pathRewrite: {
-					'^/token': '',
-				},
+					["^" + process.env.VUE_APP_BASE_TOKEN_URL]: ""
+				}
 			},
 		},
 	},
