@@ -1,7 +1,7 @@
 module.exports = {
-	// publicPath: process.env.NODE_ENV === 'production' ?
-	// 	'/KKBOX_Demo' : '/',
-	publicPath: './',
+	publicPath: process.env.NODE_ENV === 'production' ?
+		'/KKBOX_Demo' : '/',
+	// publicPath: './',
 	devServer: {
 		open: true,
 		host: 'localhost',
