@@ -12,7 +12,7 @@ export default {
 	// 取得Token
 	async getToken(payload: Model.IgetTokenRequest): Promise<Model.IgetTokenReponse> {
 		const config = {
-			method: 'get',
+			method: 'post',
 			url: `/token`,
 			data: payload,
 		};
