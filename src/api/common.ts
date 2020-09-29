@@ -4,7 +4,7 @@ import Handler from '@/utilities/api-handle';
 import * as Model from '@/models/interfaces/common';
 
 const URL = process.env.VUE_APP_URL;
-const TOKEN_URL = process.env.VUE_APP_BASE_TOKEN_URL;
+const TOKEN_URL = process.env.VUE_APP_TOKEN_URL;
 
 // 共用api
 
