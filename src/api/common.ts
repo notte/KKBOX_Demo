@@ -4,7 +4,7 @@ import Handler from '@/utilities/api-handle';
 import * as Model from '@/models/interfaces/common';
 
 const URL = process.env.VUE_APP_URL;
-const TOKEN_URL = process.env.VUE_APP_TOKEN_URL;
+const TOKEN_URL = process.env.VUE_APP_BASE_TOKEN_URL;
 
 // 共用api
 
@@ -13,7 +13,7 @@ export default {
 	async getToken(payload: Model.IgetTokenRequest): Promise<Model.IgetTokenReponse> {
 		const config = {
 			method: 'post',
-			url: `/token`,
+			url: TOKEN_URL,
 			data: payload,
 		};
 		const result = await Handler.request(config);
