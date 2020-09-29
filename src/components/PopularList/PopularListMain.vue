@@ -28,8 +28,14 @@ import * as Status from '@/models/status/type';
 export default class PopularListMain extends Vue {
 	HitsPlaylists: Model.IData[] = [];
 
-	created() {
-		Api.getNewHitsPlaylists().then(res => {
+	mounted() {
+		if (localStorage.getItem('accessToken')) {
+			this.getNewHitsPlaylists();
+		}
+	}
+
+	getNewHitsPlaylists() {
+		Api.getNewHitsPlaylists().then((res) => {
 			this.HitsPlaylists = res.data;
 		});
 	}

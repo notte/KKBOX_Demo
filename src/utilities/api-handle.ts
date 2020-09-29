@@ -24,6 +24,7 @@ class HttpAxios {
 		} else {
 			SystemAlert(Status.SysMessageType.Error, Status.ErrorPopupContent.InternalServer);
 		}
+
 		// 建立axios實體
 		const instance = axios.create();
 
